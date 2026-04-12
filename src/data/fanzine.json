@@ -1,0 +1,16 @@
+{
+  "fanzine": [
+    {
+      "id": "project-1",
+      "image-path": "../assets/shintji-placeholder.webp"
+    },
+    {
+      "id": "project-2",
+      "image": "../assets/shintji-placeholder.webp"
+    },
+    {
+      "id": "project-3",
+      "image": "../assets/shintji-placeholder.webp"
+    }
+  ]
+}

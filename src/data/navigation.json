@@ -1,0 +1,41 @@
+{
+  "links": [
+    {
+      "id": "photo",
+      "label": "Photo",
+      "href": "#photo",
+      "subnavigation": [
+        {
+          "id": "project-1",
+          "label": "Project 1",
+          "href": "#project-1"
+        },
+        {
+          "id": "project-2",
+          "label": "Project 2",
+          "href": "#project-2"
+        },
+        {
+          "id": "project-3",
+          "label": "Project 3",
+          "href": "#project-3"
+        }
+      ]
+    },
+    {
+      "id": "video",
+      "label": "Video",
+      "href": "#video"
+    },
+    {
+      "id": "fanzine",
+      "label": "Fanzine",
+      "href": "#fanzine"
+    },
+    {
+      "id": "contact",
+      "label": "Contact",
+      "href": "#contact"
+    }
+  ]
+}
