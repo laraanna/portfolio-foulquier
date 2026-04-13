@@ -1,6 +1,22 @@
 import { useState, useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import navigation from '../data/navigation.json'
 import './Navigation.css'
+
+function NavItemLink({ href, className, onClick, children }) {
+  if (href.startsWith('/')) {
+    return (
+      <Link to={href} className={className} onClick={onClick}>
+        {children}
+      </Link>
+    )
+  }
+  return (
+    <a href={href} className={className} onClick={onClick}>
+      {children}
+    </a>
+  )
+}
 
 export default function Navigation() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -90,12 +106,12 @@ export default function Navigation() {
                 >
                   {hasSub ? (
                     <>
-                      <a
+                      <NavItemLink
                         href={link.href}
                         className="navigation__link navigation__link--parent-desktop"
                       >
                         {link.label}
-                      </a>
+                      </NavItemLink>
                       <button
                         type="button"
                         className="navigation__link navigation__parent-mobile"
@@ -107,25 +123,25 @@ export default function Navigation() {
                       </button>
                     </>
                   ) : (
-                    <a
+                    <NavItemLink
                       href={link.href}
                       className="navigation__link"
                       onClick={closeMenu}
                     >
                       {link.label}
-                    </a>
+                    </NavItemLink>
                   )}
                   {hasSub && (
                     <ul className="navigation__sublist">
                       {link.subnavigation.map((sublink) => (
                         <li key={sublink.id} className="navigation__subitem">
-                          <a
+                          <NavItemLink
                             href={sublink.href}
                             className="navigation__sublink"
                             onClick={closeMenu}
                           >
                             {sublink.label}
-                          </a>
+                          </NavItemLink>
                         </li>
                       ))}
                     </ul>

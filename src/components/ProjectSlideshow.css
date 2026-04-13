@@ -1,0 +1,112 @@
+.project-slideshow {
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.project-slideshow--empty {
+  text-align: center;
+  color: var(--text);
+  padding: 2rem 1.25rem;
+}
+
+.project-slideshow__back {
+  display: inline-block;
+  margin-top: 1rem;
+  text-decoration: none;
+}
+
+
+/* ——— Horizontal scroll-snap slider ——— */
+.project-slideshow__slider {
+  position: relative;
+}
+
+
+.project-slideshow__track {
+  display: flex;
+  gap: 50px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  scroll-padding-inline: 4px;
+  padding-block: 0.25rem;
+}
+
+.project-slideshow__track::-webkit-scrollbar {
+  display: none;
+}
+
+.project-slideshow__slide {
+  flex: 0 0 700px;
+  scroll-snap-align: start;
+  overflow: hidden;
+}
+
+.project-slideshow__slide img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+
+.project-slideshow__nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--border);
+  color: var(--text-h);
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+
+.project-slideshow__nav-btn--prev {
+  left: 0;
+}
+
+.project-slideshow__nav-btn--next {
+  right: 0;
+}
+
+/* Under 800px: stack images vertically (no horizontal slider) */
+@media (max-width: 799px) {
+  .project-slideshow__slider {
+    padding-inline: 0;
+  }
+
+  .project-slideshow__nav-btn {
+    display: none;
+  }
+
+  .project-slideshow__track {
+    flex-direction: column;
+    overflow-x: visible;
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+    gap: 1rem;
+    padding-block: 0;
+  }
+
+  .project-slideshow__slide {
+    flex: none;
+    width: 100%;
+    max-width: 100%;
+    scroll-snap-align: none;
+  }
+
+  .project-slideshow__slide img {
+    aspect-ratio: auto;
+  }
+}

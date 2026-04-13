@@ -8,17 +8,17 @@
         {
           "id": "project-1",
           "label": "Project 1",
-          "href": "#project-1"
+          "href": "/project-1"
         },
         {
           "id": "project-2",
           "label": "Project 2",
-          "href": "#project-2"
+          "href": "/project-2"
         },
         {
           "id": "project-3",
           "label": "Project 3",
-          "href": "#project-3"
+          "href": "/project-3"
         }
       ]
     },
