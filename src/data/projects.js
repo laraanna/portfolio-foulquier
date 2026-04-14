@@ -1,4 +1,5 @@
 import placeholder from '../assets/shintji-placeholder.webp'
+import placeholder_1 from '../assets/tony-placeholder.webp'
 
 /** Shown on `/` when no `:projectId` is in the URL. */
 export const defaultProjectId = 'fanzine'
@@ -7,7 +8,17 @@ export const defaultProjectId = 'fanzine'
 export const projectsById = {
   fanzine: {
     title: 'Fanzine',
-    images: [placeholder, placeholder, placeholder,placeholder, placeholder, placeholder,placeholder, placeholder, placeholder],
+    images: [
+      placeholder,
+      placeholder_1,
+      placeholder,
+      placeholder_1,
+      placeholder,
+      placeholder,
+      placeholder,
+      placeholder,
+      placeholder,
+    ],
   },
   'project-1': {
     title: 'Project 1',

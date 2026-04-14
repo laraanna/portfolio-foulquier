@@ -1,4 +1,4 @@
-import { useRef, useCallback } from 'react'
+import { useRef, useCallback, useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { projectsById, defaultProjectId } from '../data/projects'
 import './ProjectSlideshow.css'
@@ -15,6 +15,27 @@ export default function ProjectSlideshow() {
 
 function ProjectSlider({items }) {
   const trackRef = useRef(null)
+  const scrollStopTimerRef = useRef(null)
+  const [isScrolling, setIsScrolling] = useState(false)
+
+  useEffect(() => {
+    return () => {
+      if (scrollStopTimerRef.current) {
+        clearTimeout(scrollStopTimerRef.current)
+      }
+    }
+  }, [])
+
+  const handleTrackScroll = useCallback(() => {
+    setIsScrolling(true)
+    if (scrollStopTimerRef.current) {
+      clearTimeout(scrollStopTimerRef.current)
+    }
+    scrollStopTimerRef.current = setTimeout(() => {
+      setIsScrolling(false)
+      scrollStopTimerRef.current = null
+    }, 260)
+  }, [])
 
   const scroll = useCallback((dir) => {
     const el = trackRef.current
@@ -29,7 +50,13 @@ function ProjectSlider({items }) {
   }, [])
 
   return (
-    <div className="project-slideshow__slider">
+    <div
+      className={
+        isScrolling
+          ? 'project-slideshow__slider project-slideshow__slider--is-scrolling'
+          : 'project-slideshow__slider'
+      }
+    >
 
       {items.length > 1 && (
         <button
@@ -42,7 +69,11 @@ function ProjectSlider({items }) {
         </button>
       )}
 
-      <div ref={trackRef} className="project-slideshow__track">
+      <div
+        ref={trackRef}
+        className="project-slideshow__track"
+        onScroll={handleTrackScroll}
+      >
         {items.map((item, i) => (
           <div key={i} className="project-slideshow__slide">
             <img src={item.image} alt={item.title} loading="lazy" />

@@ -21,6 +21,17 @@
   position: relative;
 }
 
+.project-slideshow__slider--is-scrolling .project-slideshow__track,
+.project-slideshow__slider--is-scrolling .project-slideshow__track *,
+.project-slideshow__slider--is-scrolling .project-slideshow__track *:hover {
+  cursor: none !important;
+}
+
+.project-slideshow__slide img:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
 
 .project-slideshow__track {
   display: flex;
@@ -40,16 +51,25 @@
 
 .project-slideshow__slide {
   flex: 0 0 700px;
+  min-height: 100vh;
   scroll-snap-align: start;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
+
+
+
+
 
 .project-slideshow__slide img {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 1;
-  object-fit: contain;
+  /* aspect-ratio: 1; */
+  /* object-fit: contain; */
 }
 
 .project-slideshow__nav-btn {
@@ -70,6 +90,13 @@
   line-height: 1;
   cursor: pointer;
   box-shadow: var(--shadow);
+  transition: opacity 0.15s ease, visibility 0.15s ease;
+}
+
+.project-slideshow__slider--is-scrolling .project-slideshow__nav-btn {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .project-slideshow__nav-btn--prev {
