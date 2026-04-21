@@ -15,26 +15,17 @@ export default function ProjectSlideshow() {
 
 function ProjectSlider({items }) {
   const trackRef = useRef(null)
-  const scrollStopTimerRef = useRef(null)
-  const [isScrolling, setIsScrolling] = useState(false)
+  const [suppressChrome, setSuppressChrome] = useState(false)
 
   useEffect(() => {
-    return () => {
-      if (scrollStopTimerRef.current) {
-        clearTimeout(scrollStopTimerRef.current)
-      }
-    }
-  }, [])
+    if (!suppressChrome) return undefined
+    const reveal = () => setSuppressChrome(false)
+    window.addEventListener('mousemove', reveal, { passive: true })
+    return () => window.removeEventListener('mousemove', reveal)
+  }, [suppressChrome])
 
   const handleTrackScroll = useCallback(() => {
-    setIsScrolling(true)
-    if (scrollStopTimerRef.current) {
-      clearTimeout(scrollStopTimerRef.current)
-    }
-    scrollStopTimerRef.current = setTimeout(() => {
-      setIsScrolling(false)
-      scrollStopTimerRef.current = null
-    }, 260)
+    setSuppressChrome(true)
   }, [])
 
   const scroll = useCallback((dir) => {
@@ -52,7 +43,7 @@ function ProjectSlider({items }) {
   return (
     <div
       className={
-        isScrolling
+        suppressChrome
           ? 'project-slideshow__slider project-slideshow__slider--is-scrolling'
           : 'project-slideshow__slider'
       }
@@ -76,7 +67,25 @@ function ProjectSlider({items }) {
       >
         {items.map((item, i) => (
           <div key={i} className="project-slideshow__slide">
-            <img src={item.image} alt={item.title} loading="lazy" />
+            <div className="project-slideshow__media">
+              <img src={item.image} alt={item.title} loading="lazy" />
+              {item.hoverText ? (
+                <div
+                  className={`project-slideshow__hover-text project-slideshow__hover-text--${item.hoverPosition}`}
+                  style={item.hoverColor ? { color: item.hoverColor } : undefined}
+                  aria-hidden="true"
+                >
+                  <div className="project-slideshow__hover-row">
+                    <span className="project-slideshow__hover-index">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <span className="project-slideshow__hover-label">
+                      {item.hoverText}
+                    </span>
+                  </div>
+                </div>
+              ) : null}
+            </div>
           </div>
         ))}
       </div>
@@ -114,10 +123,24 @@ function ProjectSlideshowInner({ projectId }) {
   }
 
   const { title, images } = project
-  const items = images.map((src, i) => ({
-    image: src,
-    title: `${title} — ${i + 1} of ${images.length}`,
-  }))
+  const items = images.map((img, i) => {
+    const src = typeof img === 'string' ? img : img.src
+    const text = typeof img === 'string' ? '' : img.text || ''
+    const hoverPosition =
+      typeof img === 'string'
+        ? 'top'
+        : img.hoverPosition === 'bottom'
+          ? 'bottom'
+          : 'top'
+    const hoverColor = typeof img === 'string' ? undefined : img.color
+    return {
+      image: src,
+      hoverText: text,
+      hoverPosition,
+      hoverColor,
+      title: `${title} — ${i + 1} of ${images.length}`,
+    }
+  })
 
   return (
     <section className="project-slideshow" aria-label={title}>

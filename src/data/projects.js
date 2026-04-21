@@ -4,20 +4,31 @@ import placeholder_1 from '../assets/tony-placeholder.webp'
 /** Shown on `/` when no `:projectId` is in the URL. */
 export const defaultProjectId = 'fanzine'
 
-/** @type {Record<string, { title: string; images: string[] }>} */
+/**
+ * @typedef {{ src: string; text?: string; hoverPosition?: 'top' | 'bottom'; color?: string }} ProjectImage
+ * @type {Record<string, { title: string; images: Array<string | ProjectImage> }>}
+ */
 export const projectsById = {
   fanzine: {
     title: 'Fanzine',
     images: [
-      placeholder,
-      placeholder_1,
-      placeholder,
-      placeholder_1,
-      placeholder,
-      placeholder,
-      placeholder,
-      placeholder,
-      placeholder,
+      { src: placeholder, text: 'Lookbook Shinji', hoverPosition: 'bottom', color: '#000' },
+      { src: placeholder_1, text: 'Arthur', hoverPosition: 'bottom', color: '#fff' },
+      { src: placeholder, text: 'Fleurs grises', hoverPosition: 'bottom', color: '#fff' },
+      { src: placeholder_1, text: 'Studio Harcourt', hoverPosition: 'top', color: '#fff' },
+      { src: placeholder, text: 'Lookbook Anthony', hoverPosition: 'top', color: '#fff' },
+      { src: placeholder, text: 'Campagne Kleinod 2025', hoverPosition: 'bottom', color: '#fff' },
+      { src: placeholder, text: 'Lampe email', hoverPosition: 'bottom', color: '#fff' },
+      { src: placeholder, text: 'Campagne Kleinod 2025', hoverPosition: 'bottom', color: '#fff' },
+      { src: placeholder, text: 'Exaterina', hoverPosition: 'bottom', color: '#fff' },
+      { src: placeholder, text: 'Pola Shinji', hoverPosition: 'bottom', color: '#fff' },
+      { src: placeholder, text: 'Lookbook Anthony', hoverPosition: 'top', color: '#fff' },
+      { src: placeholder, text: 'Gaetan', hoverPosition: 'bottom', color: '#fff' },
+      { src: placeholder, text: 'Gaetan', hoverPosition: 'top', color: '#fff' },
+      { src: placeholder, text: 'Lookbook Léa', hoverPosition: 'bottom', color: '#000' },
+      { src: placeholder, text: 'Valauris', hoverPosition: 'top', color: '#fff' },
+      { src: placeholder, text: 'Exaterina', hoverPosition: 'bottom', color: '#fff' },
+      { src: placeholder, text: 'Campagne Kleinod 2025', hoverPosition: 'bottom', color: '#fff' },
     ],
   },
   'project-1': {
