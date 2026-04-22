@@ -50,8 +50,34 @@
   }
 }
 
+/* --------------------------------- */
+/* ——— Fonts ——— */
+
+
+@font-face {
+  font-family: 'Satoshi Variable';
+  src: url('/assets/fonts/SatoshiVariable-BoldItalic.woff2') format('woff2'),
+      url('/assets/fonts/SatoshiVariable-BoldItalic.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Satoshi Variable';
+  src: url('/assets/fonts/SatoshiVariable-Bold.woff2') format('woff2'),
+      url('/assets/fonts/SatoshiVariable-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --------------------------------- */
+
 body {
   margin: 0;
+  font-family: 'Satoshi Variable', sans-serif;
+  letter-spacing: 3px;
 }
 
 #root {
@@ -59,3 +85,6 @@ body {
   min-height: 100svh;
   box-sizing: border-box;
 }
+
+
+
