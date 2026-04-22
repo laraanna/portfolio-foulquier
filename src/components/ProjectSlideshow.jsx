@@ -55,9 +55,7 @@ function ProjectSlider({items }) {
           className="project-slideshow__nav-btn project-slideshow__nav-btn--prev"
           onClick={() => scroll(-1)}
           aria-label="Scroll left"
-        >
-          ‹
-        </button>
+        />
       )}
 
       <div
@@ -96,9 +94,7 @@ function ProjectSlider({items }) {
           className="project-slideshow__nav-btn project-slideshow__nav-btn--next"
           onClick={() => scroll(1)}
           aria-label="Scroll right"
-        >
-          ›
-        </button>
+        />
       )}
     </div>
   )

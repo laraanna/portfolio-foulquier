@@ -119,22 +119,35 @@
 .project-slideshow__nav-btn {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  margin-top: -30px;
   z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
+  display: inline-block;
+  width: 42px;
+  height: 60px;
   margin: 0;
   padding: 0;
-  border: 1px solid var(--border);
-  color: var(--text-h);
-  font-size: 1.35rem;
-  line-height: 1;
+  border: 0;
+  background: rgba(0, 0, 0, 0.1);
+  color: #fff;
+  line-height: 60px;
+  font-size: 20px;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: normal;
+  font-style: normal;
+  font-family: 'squarespace-ui-font', sans-serif;
+  speak: none;
+  -webkit-font-smoothing: antialiased;
   cursor: pointer;
-  box-shadow: var(--shadow);
-  transition: opacity 0.15s ease, visibility 0.15s ease;
+  box-shadow: none;
+  transition:
+    opacity 0.15s ease,
+    visibility 0.15s ease,
+    background 0.15s ease;
+}
+
+.project-slideshow__nav-btn:hover {
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .project-slideshow__slider--is-scrolling .project-slideshow__nav-btn {
@@ -147,8 +160,27 @@
   left: 0;
 }
 
+.project-slideshow__nav-btn--prev::before {
+  content: '';
+  display: block;
+  width: 14px;
+  height: 26px;
+  margin: 17px auto;
+  background: url('../assets/icons/arrow.svg') center / contain no-repeat;
+  transform: rotate(180deg);
+}
+
 .project-slideshow__nav-btn--next {
   right: 0;
+}
+
+.project-slideshow__nav-btn--next::before {
+  content: '';
+  display: block;
+  width: 14px;
+  height: 26px;
+  margin: 17px auto;
+  background: url('../assets/icons/arrow.svg') center / contain no-repeat;
 }
 
 /* Under 800px: stack images vertically (no horizontal slider) */

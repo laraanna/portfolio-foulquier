@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import navigation from '../data/navigation.json'
+import monogramIcon from '../assets/icons/tf-monogram.svg'
 import './Navigation.css'
 
 function NavItemLink({ href, className, onClick, children }) {
@@ -66,6 +67,9 @@ export default function Navigation() {
   return (
     <section id="header">
       <nav className="navigation" aria-label="Main" ref={navRef}>
+        <Link to="/" className="navigation__brand" aria-label="Home">
+          <img src={monogramIcon} alt="" className="navigation__brand-icon" />
+        </Link>
         <button
           type="button"
           className="navigation__burger"
