@@ -66,7 +66,12 @@ function ProjectSlider({items }) {
         {items.map((item, i) => (
           <div key={i} className="project-slideshow__slide">
             <div className="project-slideshow__media">
-              <img src={item.image} alt={item.title} loading="lazy" />
+              <picture>
+                {item.mobileImage ? (
+                  <source media="(max-width: 799px)" srcSet={item.mobileImage} />
+                ) : null}
+                <img src={item.image} alt={item.title} loading="lazy" />
+              </picture>
               {item.hoverText ? (
                 <div
                   className={`project-slideshow__hover-text project-slideshow__hover-text--${item.hoverPosition}`}
@@ -121,6 +126,7 @@ function ProjectSlideshowInner({ projectId }) {
   const { title, images } = project
   const items = images.map((img, i) => {
     const src = typeof img === 'string' ? img : img.src
+    const mobileSrc = typeof img === 'string' ? undefined : img.mobileSrc
     const text = typeof img === 'string' ? '' : img.text || ''
     const hoverPosition =
       typeof img === 'string'
@@ -131,6 +137,7 @@ function ProjectSlideshowInner({ projectId }) {
     const hoverColor = typeof img === 'string' ? undefined : img.color
     return {
       image: src,
+      mobileImage: mobileSrc,
       hoverText: text,
       hoverPosition,
       hoverColor,
