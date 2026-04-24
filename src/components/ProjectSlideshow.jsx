@@ -63,15 +63,34 @@ function ProjectSlider({items }) {
         className="project-slideshow__track"
         onScroll={handleTrackScroll}
       >
+        <div className="project-slideshow__spacer" aria-hidden="true" />
         {items.map((item, i) => (
-          <div key={i} className="project-slideshow__slide">
+          <div
+            key={i}
+            className="project-slideshow__slide"
+            style={{
+              '--slide-height': item.slideHeight,
+              '--slide-mobile-width': item.slideMobileWidth,
+            }}
+          >
             <div className="project-slideshow__media">
-              <picture>
-                {item.mobileImage ? (
-                  <source media="(max-width: 799px)" srcSet={item.mobileImage} />
-                ) : null}
-                <img src={item.image} alt={item.title} loading="lazy" />
-              </picture>
+              {item.link ? (
+                <Link to={item.link}>
+                  <picture>
+                    {item.mobileImage ? (
+                      <source media="(max-width: 799px)" srcSet={item.mobileImage} />
+                    ) : null}
+                    <img src={item.image} alt={item.title} loading="lazy" />
+                  </picture>
+                </Link>
+              ) : (
+                <picture>
+                  {item.mobileImage ? (
+                    <source media="(max-width: 799px)" srcSet={item.mobileImage} />
+                  ) : null}
+                  <img src={item.image} alt={item.title} loading="lazy" />
+                </picture>
+              )}
               {item.hoverText ? (
                 <div
                   className={`project-slideshow__hover-text project-slideshow__hover-text--${item.hoverPosition}`}
@@ -91,6 +110,7 @@ function ProjectSlider({items }) {
             </div>
           </div>
         ))}
+        <div className="project-slideshow__spacer" aria-hidden="true" />
       </div>
 
       {items.length > 1 && (
@@ -108,6 +128,9 @@ function ProjectSlider({items }) {
 function ProjectSlideshowInner({ projectId }) {
   const resolvedId = projectId ?? defaultProjectId
   const project = projectsById[resolvedId]
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   if (!project) {
     return (
@@ -128,6 +151,9 @@ function ProjectSlideshowInner({ projectId }) {
     const src = typeof img === 'string' ? img : img.src
     const mobileSrc = typeof img === 'string' ? undefined : img.mobileSrc
     const text = typeof img === 'string' ? '' : img.text || ''
+    const slideHeight = typeof img === 'string' ? '60vh' : img.height || '60vh'
+    const slideMobileWidth = typeof img === 'string' ? '100%' : img.width || '100%'
+    const link = typeof img === 'string' ? undefined : img.link
     const hoverPosition =
       typeof img === 'string'
         ? 'top'
@@ -139,6 +165,9 @@ function ProjectSlideshowInner({ projectId }) {
       image: src,
       mobileImage: mobileSrc,
       hoverText: text,
+      slideHeight,
+      slideMobileWidth,
+      link,
       hoverPosition,
       hoverColor,
       title: `${title} — ${i + 1} of ${images.length}`,
@@ -148,6 +177,20 @@ function ProjectSlideshowInner({ projectId }) {
   return (
     <section className="project-slideshow" aria-label={title}>
       <ProjectSlider title={title} items={items} />
+      <div
+        className="project-slideshow__back-to-top"
+        role="button"
+        tabIndex={0}
+        onClick={scrollToTop}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            scrollToTop()
+          }
+        }}
+      >
+        Back to top
+      </div>
     </section>
   )
 }

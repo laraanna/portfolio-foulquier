@@ -2,6 +2,10 @@ import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import navigation from '../data/navigation.json'
 import monogramIcon from '../assets/icons/tf-monogram.svg'
+import hamburgerIcon from '../assets/icons/hamburger.svg'
+import closeIcon from '../assets/icons/close.svg'
+import plusIcon from '../assets/icons/plus.svg'
+import minusIcon from '../assets/icons/minus.svg'
 import './Navigation.css'
 
 function NavItemLink({ href, className, onClick, children }) {
@@ -22,6 +26,8 @@ function NavItemLink({ href, className, onClick, children }) {
 export default function Navigation() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [expandedId, setExpandedId] = useState(null)
+  const [suppressHover, setSuppressHover] = useState(false)
+  const [headerVisible, setHeaderVisible] = useState(true)
   const navRef = useRef(null)
 
   useEffect(() => {
@@ -48,9 +54,50 @@ export default function Navigation() {
     return () => document.removeEventListener('pointerdown', onPointerDown)
   }, [menuOpen])
 
+  useEffect(() => {
+    if (!suppressHover) return undefined
+    const restoreHover = () => setSuppressHover(false)
+    window.addEventListener('mousemove', restoreHover, { passive: true })
+    return () => window.removeEventListener('mousemove', restoreHover)
+  }, [suppressHover])
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 799px)')
+    let lastScrollY = window.scrollY
+    const threshold = 8
+    const onScroll = () => {
+      if (!mq.matches || menuOpen) {
+        setHeaderVisible(true)
+        lastScrollY = window.scrollY
+        return
+      }
+
+      const currentScrollY = window.scrollY
+      const delta = currentScrollY - lastScrollY
+
+      if (currentScrollY <= threshold) {
+        setHeaderVisible(true)
+      } else if (delta > threshold) {
+        setHeaderVisible(false)
+      } else if (delta < -threshold) {
+        setHeaderVisible(true)
+      }
+
+      lastScrollY = currentScrollY
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [menuOpen])
+
   const closeMenu = () => {
     setMenuOpen(false)
     setExpandedId(null)
+  }
+
+  const handleSubNavigationClick = () => {
+    closeMenu()
+    setSuppressHover(true)
   }
 
   const toggleMenu = () => {
@@ -65,8 +112,15 @@ export default function Navigation() {
   }
 
   return (
-    <section id="header">
-      <nav className="navigation" aria-label="Main" ref={navRef}>
+    <section
+      id="header"
+      className={headerVisible ? 'header--mobile-visible' : 'header--mobile-hidden'}
+    >
+      <nav
+        className={suppressHover ? 'navigation navigation--suppress-hover' : 'navigation'}
+        aria-label="Main"
+        ref={navRef}
+      >
         <Link to="/" className="navigation__brand" aria-label="Home">
           <img src={monogramIcon} alt="" className="navigation__brand-icon" />
         </Link>
@@ -78,12 +132,15 @@ export default function Navigation() {
           id="navigation-menu-button"
           onClick={toggleMenu}
         >
-          <span className="navigation__burger-bars" aria-hidden>
-            <span className="navigation__burger-bar" />
-            <span className="navigation__burger-bar" />
-            <span className="navigation__burger-bar" />
+          <img
+            src={menuOpen ? closeIcon : hamburgerIcon}
+            alt=""
+            className="navigation__burger-icon"
+            aria-hidden
+          />
+          <span className="navigation__sr-only">
+            {menuOpen ? 'Close menu' : 'Open menu'}
           </span>
-          <span className="navigation__sr-only">Menu</span>
         </button>
         <div
           id="navigation-panel"
@@ -123,7 +180,12 @@ export default function Navigation() {
                         onClick={() => toggleSub(link.id)}
                       >
                         <span>{link.label}</span>
-                        <span className="navigation__chevron" aria-hidden />
+                        <img
+                          src={expanded ? minusIcon : plusIcon}
+                          alt=""
+                          className="navigation__expand-icon"
+                          aria-hidden
+                        />
                       </button>
                     </>
                   ) : (
@@ -142,7 +204,7 @@ export default function Navigation() {
                           <NavItemLink
                             href={sublink.href}
                             className="navigation__sublink"
-                            onClick={closeMenu}
+                            onClick={handleSubNavigationClick}
                           >
                             {sublink.label}
                           </NavItemLink>

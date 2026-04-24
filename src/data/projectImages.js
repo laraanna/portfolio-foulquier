@@ -15,8 +15,14 @@ import fanzineStudioMobile from '../assets/projects/fanzine/FANZINE_TF_04_STUDIO
 import fanzineAnthonyDesktop from '../assets/projects/fanzine/FANZINE_TF_05_ANTHONY_DESKTOP.jpg'
 import fanzineAnthonyMobile from '../assets/projects/fanzine/FANZINE_TF_05_ANTHONY_MOBILE.jpg'
 
+import fanzineKleinod04Desktop from '../assets/projects/fanzine/FANZINE_TF_06_CAMPAGNE_KLEINOD_DESKTOP.jpg'
+import fanzineKleinod04Mobile from '../assets/projects/fanzine/FANZINE_TF_06_CAMPAGNE_KLEINOD_MOBILE.jpg'
+
 import fanzineEmailDesktop from '../assets/projects/fanzine/FANZINE_TF_07_EMAIL_DESKTOP.jpg'
 import fanzineEmailMobile from '../assets/projects/fanzine/FANZINE_TF_07_EMAIL_MOBILE.jpg'
+
+import fanzineKleinod08Desktop from '../assets/projects/fanzine/FANZINE_TF_08_CAMPAGNE_KLEIDOD_DESKTOP.jpg'
+import fanzineKleinod08Mobile from '../assets/projects/fanzine/FANZINE_TF_08_CAMPAGNE_KLEIDOD_MOBILE.jpg'
 
 import fanzineExaterina17Desktop from '../assets/projects/fanzine/FANZINE_TF_09_EXATERINA_DESKTOP.jpg'
 import fanzineEkaterina09Mobile from '../assets/projects/fanzine/FANZINE_TF_09_EKATERINA_MOBILE.jpg'
@@ -73,9 +79,17 @@ export const fanzineImages = {
     desktop: fanzineAnthonyDesktop,
     mobile: fanzineAnthonyMobile,
   },
+  campagneKleinod06: {
+    desktop: fanzineKleinod04Desktop,
+    mobile: fanzineKleinod04Mobile,
+  },
   email: {
     desktop: fanzineEmailDesktop,
     mobile: fanzineEmailMobile,
+  },
+  campagneKleinod08: {
+    desktop: fanzineKleinod08Desktop,
+    mobile: fanzineKleinod08Mobile,
   },
   ekaterina09: {
     desktop: fanzineEkaterina09Mobile,
