@@ -6,76 +6,76 @@
       "href": "#photo",
       "subnavigation": [
         {
-          "id": "project-1",
+          "id": "01-project-lookbook-shinji",
           "label": "Lookbook Shinji",
-          "href": "/project-1"
+          "href": "/lookbook-shinji"
         },
         {
-          "id": "project-2",
+          "id": "02-arthur",
           "label": "Arthur",
-          "href": "/project-2"
+          "href": "/arthur"
         },
         {
-          "id": "project-3",
+          "id": "03-fleurs-grises",
           "label": "Fleurs grises",
-          "href": "/project-3"
+          "href": "/fleurs-grises"
         },
         {
-          "id": "project-4",
+          "id": "04-studio-harcourt",
           "label": "Studio Harcourt",
-          "href": "/project-4"
+          "href": "/studio-harcourt"
         },
         {
-          "id": "project-5",
+          "id": "05-lookbook-anthony",
           "label": "Lookbook Anthony",
           "href": "/project-5"
         },
         {
-          "id": "project-6",
+          "id": "06-campagne-kleinod-2025",
           "label": "Campagne Kleinod 2025",
-          "href": "/project-6"
+          "href": "/campagne-kleinod-2025"
         },
         {
-          "id": "project-7",
+          "id": "07-lampe-email",
           "label": "Lampe email",
-          "href": "/project-7"
+          "href": "/lampe-email"
         },
         {
-          "id": "project-8",
+          "id": "08-ekaterina",
           "label": "Ekaterina",
-          "href": "/project-9"
+          "href": "/ekaterina"
         },
         {
-          "id": "project-9",
+          "id": "09-pola-shinji",
           "label": "Pola Shinji",
-          "href": "/project-10"
+          "href": "/pola-shinji"
         },
         {
-          "id": "project-10",
+          "id": "10-gaetan",
           "label": "Gaetan",
-          "href": "/project-12"
+          "href": "/gaetan"
         },
         {
-          "id": "project-11",
+          "id": "11-lookbook-lea",
           "label": "Lookbook Léa",
-          "href": "/project-14"
+          "href": "/lookbook-lea"
         },
         {
-          "id": "project-12",
+          "id": "12-vallauris",
           "label": "Valauris",
-          "href": "/project-15"
+          "href": "/vallauris"
         }
       ]
     },
     {
       "id": "video",
       "label": "Video",
-      "href": "#video"
+      "href": "/video"
     },
     {
       "id": "fanzine",
       "label": "Fanzine",
-      "href": "#fanzine"
+      "href": "/"
     },
     {
       "id": "contact",

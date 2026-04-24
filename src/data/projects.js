@@ -1,4 +1,4 @@
-import { fanzineImages, placeholders } from './projectImages'
+import { fanzineImages, lookbookShinjiImages, arthurImages, placeholders } from './projectImages'
 
 /** Shown on `/` when no `:projectId` is in the URL. */
 export const defaultProjectId = 'fanzine'
@@ -30,51 +30,68 @@ export const projectsById = {
       { src: fanzineImages.campagneKleinod17.desktop, mobileSrc: fanzineImages.campagneKleinod17.mobile, text: 'Campagne Kleinod 2025', hoverPosition: 'bottom', color: '#fff', height: '70vh', width: '100%', link: '/project-6' },
     ],
   },
-  'project-1': {
+  'lookbook-shinji': {
     title: 'Lookbook Shinji',
-    images: [placeholders.default, placeholders.default, placeholders.default],
+    images: [
+      { src: lookbookShinjiImages.shinji01.desktop, mobileSrc: lookbookShinjiImages.shinji01.mobile, height: '70vh', width: '100%' },
+      { src: lookbookShinjiImages.shinji02.desktop, mobileSrc: lookbookShinjiImages.shinji02.mobile, height: '70vh', width: '100%' },
+      { src: lookbookShinjiImages.shinji03.desktop, mobileSrc: lookbookShinjiImages.shinji03.mobile, height: '100vh', width: '100%' },
+      { src: lookbookShinjiImages.shinji04.desktop, mobileSrc: lookbookShinjiImages.shinji04.mobile, height: '70vh', width: '100%' },
+      { src: lookbookShinjiImages.shinji05.desktop, mobileSrc: lookbookShinjiImages.shinji05.mobile, height: '100vh', width: '100%' },
+      { src: lookbookShinjiImages.shinji06.desktop, mobileSrc: lookbookShinjiImages.shinji06.mobile, height: '70vh', width: '100%' },
+      { src: lookbookShinjiImages.shinji07.desktop, mobileSrc: lookbookShinjiImages.shinji07.mobile, height: '70vh', width: '100%' },
+      { src: lookbookShinjiImages.shinji08.desktop, mobileSrc: lookbookShinjiImages.shinji08.mobile, height: '100vh', width: '100%' },
+      { src: lookbookShinjiImages.shinji09.desktop, mobileSrc: lookbookShinjiImages.shinji09.mobile, height: '70vh', width: '100%' },
+    ],
   },
-  'project-2': {
+  'arthur': {
     title: 'Arthur',
-    images: [placeholders.default, placeholders.default],
+    images: [
+      { src: arthurImages.arthur01.desktop, mobileSrc: arthurImages.arthur01.mobile, height: '70vh', width: '100%' },
+      { src: arthurImages.arthur02.desktop, mobileSrc: arthurImages.arthur02.mobile, height: '70vh', width: '100%' },
+      { src: arthurImages.arthur03.desktop, mobileSrc: arthurImages.arthur03.mobile, height: '100vh', width: '100%' },
+      { src: arthurImages.arthur04.desktop, mobileSrc: arthurImages.arthur04.mobile, height: '70vh', width: '100%' },
+      { src: arthurImages.arthur05.desktop, mobileSrc: arthurImages.arthur05.mobile, height: '70vh', width: '100%' },
+      { src: arthurImages.arthur06.desktop, mobileSrc: arthurImages.arthur06.mobile, height: '100vh', width: '100%' },
+    ],
   },
-  'project-3': {
+  'fleurs-grises': {
     title: 'Fleurs grises',
     images: [placeholders.default, placeholders.default, placeholders.default, placeholders.default],
   },
-  'project-4': {
+  'studio-harcourt': {
     title: 'Studio Harcourt',
     images: [placeholders.default, placeholders.default, placeholders.default, placeholders.default],
   },
-  'project-5': {
+  'lookbook-anthony': {
     title: 'Lookbook Anthony',
     images: [placeholders.default, placeholders.default, placeholders.default, placeholders.default],
   },
-  'project-6': {
+  'campagne-kleinod-2025': {
     title: 'Campagne Kleinod 2025',
     images: [placeholders.default, placeholders.default, placeholders.default, placeholders.default],
   },
-  'project-7': {
+  'lampe-email': {
     title: 'Lampe email',
     images: [placeholders.default, placeholders.default, placeholders.default, placeholders.default],
   },
-  'project-8': {
+  'ekaterina': {
     title: 'Ekaterina',
     images: [placeholders.default, placeholders.default, placeholders.default, placeholders.default],
   },
-  'project-9': {
+  'pola-shinji': {
     title: 'Pola Shinji',
     images: [placeholders.default, placeholders.default, placeholders.default, placeholders.default],
   },
-  'project-10': {
+  'gaetan': {
     title: 'Gaetan',
     images: [placeholders.default, placeholders.default, placeholders.default, placeholders.default],
   },
-  'project-11': {
+  'lookbook-lea': {
     title: 'Lookbook Léa',
     images: [placeholders.default, placeholders.default, placeholders.default, placeholders.default],
   },
-  'project-12': {
+  'vallauris': {
     title: 'Valauris',
     images: [placeholders.default, placeholders.default, placeholders.default, placeholders.default],
   }
