@@ -1,4 +1,6 @@
 import placeholder from '../assets/shintji-placeholder.webp'
+
+// #region Fanzine — imports
 // __________________________________________________________
 // FANZINE
 // __________________________________________________________
@@ -53,10 +55,13 @@ import fanzineExaterina16Mobile from '../assets/projects/00_fanzine/FANZINE_TF_1
 
 import fanzineKleinod17Desktop from '../assets/projects/00_fanzine/FANZINE_TF_17_CAMPAGNE_KLEINOD_DESKTOP.jpg'
 import fanzineKleinod17Mobile from '../assets/projects/00_fanzine/FANZINE_TF_17_CAMPAGNE_KLEINOD_MOBILE.jpg'
+// #endregion
 
+// #region Lookbook Shinji — imports
 // __________________________________________________________
 // LOOKBOOK SHINJI
 // __________________________________________________________
+
 import lookbookShinji01Desktop from '../assets/projects/01_lookbook_shinji/LOOKBOOK_SHINJI_01_DESKTOP.jpg'
 import lookbookShinji01Mobile from '../assets/projects/01_lookbook_shinji/LOOKBOOK_SHINJI_01_MOBILE.jpg'
 
@@ -83,7 +88,9 @@ import lookbookShinji08Mobile from '../assets/projects/01_lookbook_shinji/LOOKBO
 
 import lookbookShinji09Desktop from '../assets/projects/01_lookbook_shinji/LOOKBOOK_SHINJI_09_DESKTOP.jpg'
 import lookbookShinji09Mobile from '../assets/projects/01_lookbook_shinji/LOOKBOOK_SHINJI_09_MOBILE.jpg'
+// #endregion
 
+// #region Arthur — imports
 // __________________________________________________________
 // ARTHUR
 // __________________________________________________________
@@ -105,6 +112,156 @@ import arthur05Mobile from '../assets/projects/02_arthur/ARTHUR_05_MOBILE.jpg'
 
 import arthur06Desktop from '../assets/projects/02_arthur/ARTHUR_06_DESKTOP.jpg'
 import arthur06Mobile from '../assets/projects/02_arthur/ARTHUR_06_MOBILE.jpg'
+// #endregion
+
+// #region Fleurs grises — imports
+// __________________________________________________________
+// FLEURS GRISES
+// __________________________________________________________
+
+import fleursGrises01Desktop from '../assets/projects/03_fleurs_grises/FLEURSGRISES_01_DESKTOP.jpg'
+import fleursGrises01Mobile from '../assets/projects/03_fleurs_grises/FLEURSGRISES_01_MOBILE.jpg'
+
+import fleursGrises02Desktop from '../assets/projects/03_fleurs_grises/FLEURSGRISES_02_DESKTOP.jpg'
+import fleursGrises02Mobile from '../assets/projects/03_fleurs_grises/FLEURSGRISES_02_MOBILE.jpg'
+
+import fleursGrises03Desktop from '../assets/projects/03_fleurs_grises/FLEURSGRISES_03_DESKTOP.jpg'
+import fleursGrises03Mobile from '../assets/projects/03_fleurs_grises/FLEURSGRISES_03_MOBILE.jpg'
+
+import fleursGrises04Desktop from '../assets/projects/03_fleurs_grises/FLEURSGRISES_04_DESKTOP.jpg'
+import fleursGrises04Mobile from '../assets/projects/03_fleurs_grises/FLEURSGRISES_04_MOBILE.jpg'
+
+
+// #endregion
+
+// #region Studio Harcourt — imports
+// __________________________________________________________
+// STUDIO HARCOURT
+// __________________________________________________________
+
+import studioHarcourt01Desktop from '../assets/projects/04_studio_harcourt/STUDIOHARCOURTPARIS_01_DESKTOP.jpg'
+import studioHarcourt01Mobile from '../assets/projects/04_studio_harcourt/STUDIOHARCOURTPARIS_01_MOBILE.jpg'
+
+import studioHarcourt02Desktop from '../assets/projects/04_studio_harcourt/STUDIOHARCOURTPARIS_02_DESKTOP.jpg'
+import studioHarcourt02Mobile from '../assets/projects/04_studio_harcourt/STUDIOHARCOURTPARIS_02_MOBILE.jpg'
+
+import studioHarcourt03Desktop from '../assets/projects/04_studio_harcourt/STUDIOHARCOURTPARIS_03_DESKTOP.jpg'
+import studioHarcourt03Mobile from '../assets/projects/04_studio_harcourt/STUDIOHARCOURTPARIS_03_MOBILE.jpg'
+
+import studioHarcourt04Desktop from '../assets/projects/04_studio_harcourt/STUDIOHARCOURTPARIS_04_DESKTOP.jpg'
+import studioHarcourt04Mobile from '../assets/projects/04_studio_harcourt/STUDIOHARCOURTPARIS_04_MOBILE.jpg'  
+
+import studioHarcourt05Desktop from '../assets/projects/04_studio_harcourt/STUDIOHARCOURTPARIS_05_DESKTOP.jpg'
+import studioHarcourt05Mobile from '../assets/projects/04_studio_harcourt/STUDIOHARCOURTPARIS_05_MOBILE.jpg'
+
+import studioHarcourt06Desktop from '../assets/projects/04_studio_harcourt/STUDIOHARCOURTPARIS_06_DESKTOP.jpg'
+import studioHarcourt06Mobile from '../assets/projects/04_studio_harcourt/STUDIOHARCOURTPARIS_06_MOBILE.jpg'
+
+import studioHarcourt07Desktop from '../assets/projects/04_studio_harcourt/STUDIOHARCOURTPARIS_07_DESKTOP.jpg'
+import studioHarcourt07Mobile from '../assets/projects/04_studio_harcourt/STUDIOHARCOURTPARIS_07_MOBILE.jpg'
+
+import studioHarcourt08Desktop from '../assets/projects/04_studio_harcourt/STUDIOHARCOURTPARIS_08_DESKTOP.jpg'
+import studioHarcourt08Mobile from '../assets/projects/04_studio_harcourt/STUDIOHARCOURTPARIS_08_MOBILE.jpg'
+
+// #endregion
+
+
+// #region Lookbook Anthony — imports
+// __________________________________________________________
+// Lookbook Anthony
+// __________________________________________________________
+
+import lookbookAnthony01Desktop from '../assets/projects/05_lookbook_anthony/LOOKBOOK_ANTHONY_01_DESKTOP.jpg'
+import lookbookAnthony01Mobile from '../assets/projects/05_lookbook_anthony/LOOKBOOK_ANTHONY_01_MOBILE.jpg'
+
+import lookbookAnthony02Desktop from '../assets/projects/05_lookbook_anthony/LOOKBOOK_ANTHONY_02_DESKTOP.jpg'
+import lookbookAnthony02Mobile from '../assets/projects/05_lookbook_anthony/LOOKBOOK_ANTHONY_02_MOBILE.jpg'
+
+import lookbookAnthony03Desktop from '../assets/projects/05_lookbook_anthony/LOOKBOOK_ANTHONY_03_DESKTOP.jpg'
+import lookbookAnthony03Mobile from '../assets/projects/05_lookbook_anthony/LOOKBOOK_ANTHONY_03_MOBILE.jpg'
+
+import lookbookAnthony04Desktop from '../assets/projects/05_lookbook_anthony/LOOKBOOK_ANTHONY_04_DESKTOP.jpg'
+import lookbookAnthony04Mobile from '../assets/projects/05_lookbook_anthony/LOOKBOOK_ANTHONY_04_MOBILE.jpg'
+
+import lookbookAnthony05Desktop from '../assets/projects/05_lookbook_anthony/LOOKBOOK_ANTHONY_05_DESKTOP.jpg'
+import lookbookAnthony05Mobile from '../assets/projects/05_lookbook_anthony/LOOKBOOK_ANTHONY_05_MOBILE.jpg'
+
+import lookbookAnthony06Desktop from '../assets/projects/05_lookbook_anthony/LOOKBOOK_ANTHONY_06_DESKTOP.jpg'
+import lookbookAnthony06Mobile from '../assets/projects/05_lookbook_anthony/LOOKBOOK_ANTHONY_06_MOBILE.jpg'
+
+import lookbookAnthony07Desktop from '../assets/projects/05_lookbook_anthony/LOOKBOOK_ANTHONY_07_DESKTOP.jpg'
+import lookbookAnthony07Mobile from '../assets/projects/05_lookbook_anthony/LOOKBOOK_ANTHONY_07_MOBILE.jpg'
+
+import lookbookAnthony08Desktop from '../assets/projects/05_lookbook_anthony/LOOKBOOK_ANTHONY_08_DESKTOP.jpg'
+import lookbookAnthony08Mobile from '../assets/projects/05_lookbook_anthony/LOOKBOOK_ANTHONY_08_MOBILE.jpg'
+
+// #endregion
+
+
+// #region Campagne Kleinod 2025 — imports
+// __________________________________________________________
+// Campagne Kleinod 2025
+// __________________________________________________________
+
+import campagneKleinod01Desktop from '../assets/projects/06_campagne_kleinod_2025/CAMPAGNE_KLEINOD_01_DESKTOP.jpg'
+import campagneKleinod01Mobile from '../assets/projects/06_campagne_kleinod_2025/CAMPAGNE_KLEINOD_01_MOBILE.jpg'
+
+import campagneKleinod02Desktop from '../assets/projects/06_campagne_kleinod_2025/CAMPAGNE_KLEINOD_02_DESKTOP.jpg'
+import campagneKleinod02Mobile from '../assets/projects/06_campagne_kleinod_2025/CAMPAGNE_KLEINOD_02_MOBILE.jpg'
+
+import campagneKleinod03Desktop from '../assets/projects/06_campagne_kleinod_2025/CAMPAGNE_KLEINOD_03_DESKTOP.jpg'
+import campagneKleinod03Mobile from '../assets/projects/06_campagne_kleinod_2025/CAMPAGNE_KLEINOD_03_MOBILE.jpg'
+
+import campagneKleinod04Desktop from '../assets/projects/06_campagne_kleinod_2025/CAMPAGNE_KLEINOD_04_DESKTOP.jpg'
+import campagneKleinod04Mobile from '../assets/projects/06_campagne_kleinod_2025/CAMPAGNE_KLEINOD_04_MOBILE.jpg'
+
+import campagneKleinod05Desktop from '../assets/projects/06_campagne_kleinod_2025/CAMPAGNE_KLEINOD_05_DESKTOP.jpg'
+import campagneKleinod05Mobile from '../assets/projects/06_campagne_kleinod_2025/CAMPAGNE_KLEINOD_05_MOBILE.jpg'
+
+import campagneKleinod06Desktop from '../assets/projects/06_campagne_kleinod_2025/CAMPAGNE_KLEINOD_06_DESKTOP.jpg'
+import campagneKleinod06Mobile from '../assets/projects/06_campagne_kleinod_2025/CAMPAGNE_KLEINOD_06_MOBILE.jpg'
+
+import campagneKleinod07Desktop from '../assets/projects/06_campagne_kleinod_2025/CAMPAGNE_KLEINOD_07_DESKTOP.jpg'
+import campagneKleinod07Mobile from '../assets/projects/06_campagne_kleinod_2025/CAMPAGNE_KLEINOD_07_MOBILE.jpg'
+
+import campagneKleinod08Desktop from '../assets/projects/06_campagne_kleinod_2025/CAMPAGNE_KLEINOD_08_DESKTOP.jpg'
+import campagneKleinod08Mobile from '../assets/projects/06_campagne_kleinod_2025/CAMPAGNE_KLEINOD_08_MOBILE.jpg'
+
+import campagneKleinod09Desktop from '../assets/projects/06_campagne_kleinod_2025/CAMPAGNE_KLEINOD_09_DESKTOP.jpg'
+import campagneKleinod09Mobile from '../assets/projects/06_campagne_kleinod_2025/CAMPAGNE_KLEINOD_09_MOBILE.jpg'
+
+import campagneKleinod10Desktop from '../assets/projects/06_campagne_kleinod_2025/CAMPAGNE_KLEINOD_10_DESKTOP.jpg'
+import campagneKleinod10Mobile from '../assets/projects/06_campagne_kleinod_2025/CAMPAGNE_KLEINOD_10_MOBILE.jpg'
+// #endregion
+
+
+// #region Ekaterina — imports
+// __________________________________________________________
+// Ekaterina
+// __________________________________________________________
+
+import ekaterina01Desktop from '../assets/projects/08_ekaterina/EKATERINA_01_DESKTOP.jpg'
+import ekaterina01Mobile from '../assets/projects/08_ekaterina/EKATERINA_01_MOBILE.jpg'
+
+import ekaterina02Desktop from '../assets/projects/08_ekaterina/EKATERINA_02_DESKTOP.jpg'
+import ekaterina02Mobile from '../assets/projects/08_ekaterina/EKATERINA_02_MOBILE.jpg'
+
+import ekaterina03Desktop from '../assets/projects/08_ekaterina/EKATERINA_03_DESKTOP.jpg'
+import ekaterina03Mobile from '../assets/projects/08_ekaterina/EKATERINA_03_MOBILE.jpg'
+
+import ekaterina04Desktop from '../assets/projects/08_ekaterina/EKATERINA_04_DESKTOP.jpg'
+import ekaterina04Mobile from '../assets/projects/08_ekaterina/EKATERINA_04_MOBILE.jpg'
+
+import ekaterina05Desktop from '../assets/projects/08_ekaterina/EKATERINA_05_DESKTOP.jpg'
+import ekaterina05Mobile from '../assets/projects/08_ekaterina/EKATERINA_05_MOBILE.jpg'
+
+import ekaterina06Desktop from '../assets/projects/08_ekaterina/EKATERINA_06_DESKTOP.jpg'
+import ekaterina06Mobile from '../assets/projects/08_ekaterina/EKATERINA_06_MOBILE.jpg'
+
+import ekaterina07Desktop from '../assets/projects/08_ekaterina/EKATERINA_07_DESKTOP.jpg'
+import ekaterina07Mobile from '../assets/projects/08_ekaterina/EKATERINA_07_MOBILE.jpg'
+
+// #endregion
 
 
 
@@ -250,5 +407,168 @@ export const arthurImages = {
   arthur06: {
     desktop: arthur06Desktop,
     mobile: arthur06Mobile,
+  },
+}
+
+export const fleursGrisesImages = {
+  fleursGrises01: {
+    desktop: fleursGrises01Desktop,
+    mobile: fleursGrises01Mobile,
+  },
+  fleursGrises02: {
+    desktop: fleursGrises02Desktop,
+    mobile: fleursGrises02Mobile,
+  },
+  fleursGrises03: {
+    desktop: fleursGrises03Desktop,
+    mobile: fleursGrises03Mobile,
+  },
+  fleursGrises04: {
+    desktop: fleursGrises04Desktop,
+    mobile: fleursGrises04Mobile,
+  },
+}
+
+export const studioHarcourtImages = {
+  studioHarcourt01: {
+    desktop: studioHarcourt01Desktop,
+    mobile: studioHarcourt01Mobile,
+  },
+  studioHarcourt02: {
+    desktop: studioHarcourt02Desktop,
+    mobile: studioHarcourt02Mobile,
+  },
+  studioHarcourt03: {
+    desktop: studioHarcourt03Desktop,
+    mobile: studioHarcourt03Mobile,
+  },
+  studioHarcourt04: {
+    desktop: studioHarcourt04Desktop,
+    mobile: studioHarcourt04Mobile,
+  },
+  studioHarcourt05: {
+    desktop: studioHarcourt05Desktop,
+    mobile: studioHarcourt05Mobile,
+  },
+  studioHarcourt06: {
+    desktop: studioHarcourt06Desktop,
+    mobile: studioHarcourt06Mobile,
+  },
+  studioHarcourt07: {
+    desktop: studioHarcourt07Desktop,
+    mobile: studioHarcourt07Mobile,
+  },
+  studioHarcourt08: {
+    desktop: studioHarcourt08Desktop,
+    mobile: studioHarcourt08Mobile,
+  },
+}
+
+export const lookbookAnthonyImages = {
+  lookbookAnthony01: {
+    desktop: lookbookAnthony01Desktop,
+    mobile: lookbookAnthony01Mobile,
+  },
+  lookbookAnthony02: {
+    desktop: lookbookAnthony02Desktop,
+    mobile: lookbookAnthony02Mobile,
+  },
+  lookbookAnthony03: {
+    desktop: lookbookAnthony03Desktop,
+    mobile: lookbookAnthony03Mobile,
+  },
+  lookbookAnthony04: {
+    desktop: lookbookAnthony04Desktop,
+    mobile: lookbookAnthony04Mobile,
+  },
+  lookbookAnthony05: {
+    desktop: lookbookAnthony05Desktop,
+    mobile: lookbookAnthony05Mobile,
+  },
+  lookbookAnthony06: {
+    desktop: lookbookAnthony06Desktop,
+    mobile: lookbookAnthony06Mobile,
+  },
+  lookbookAnthony07: {
+    desktop: lookbookAnthony07Desktop,
+    mobile: lookbookAnthony07Mobile,
+  },
+  lookbookAnthony08: {
+    desktop: lookbookAnthony08Desktop,
+    mobile: lookbookAnthony08Mobile,
+  },
+}
+
+export const campagneKleinodImages = {
+  campagneKleinod01: {
+    desktop: campagneKleinod01Desktop,
+    mobile: campagneKleinod01Mobile,
+  },
+  campagneKleinod02: {
+    desktop: campagneKleinod02Desktop,
+    mobile: campagneKleinod02Mobile,
+  },
+  campagneKleinod03: {
+    desktop: campagneKleinod03Desktop,
+    mobile: campagneKleinod03Mobile,
+  },
+  campagneKleinod04: {
+    desktop: campagneKleinod04Desktop,
+    mobile: campagneKleinod04Mobile,
+  },
+  campagneKleinod05: {
+    desktop: campagneKleinod05Desktop,
+    mobile: campagneKleinod05Mobile,
+  },
+  campagneKleinod06: {
+    desktop: campagneKleinod06Desktop,
+    mobile: campagneKleinod06Mobile,
+  },
+  campagneKleinod07: {
+    desktop: campagneKleinod07Desktop,
+    mobile: campagneKleinod07Mobile,
+  },
+  campagneKleinod08: {
+    desktop: campagneKleinod08Desktop,
+    mobile: campagneKleinod08Mobile,
+  },
+  campagneKleinod09: {
+    desktop: campagneKleinod09Desktop,
+    mobile: campagneKleinod09Mobile,
+  },
+  campagneKleinod10: {
+    desktop: campagneKleinod10Desktop,
+    mobile: campagneKleinod10Mobile,
+  },
+}
+
+export const ekaterinaImages = {
+  ekaterina01: {
+    desktop: ekaterina01Desktop,
+    mobile: ekaterina01Mobile,
+  },
+  ekaterina02: {
+    desktop: ekaterina02Desktop,
+    mobile: ekaterina02Mobile,
+  },
+  ekaterina03: {
+    desktop: ekaterina03Desktop,
+    mobile: ekaterina03Mobile,
+  },
+  ekaterina04: {
+    desktop: ekaterina04Desktop,
+    mobile: ekaterina04Mobile,
+  },
+  ekaterina05: {
+    desktop: ekaterina05Desktop,
+    mobile: ekaterina05Mobile,
+  },
+  ekaterina06: {
+    desktop: ekaterina06Desktop,
+    mobile: ekaterina06Mobile,
+  },
+  ekaterina07: {
+    desktop: ekaterina07Desktop,
+    mobile: ekaterina07Mobile,
   },
 }
