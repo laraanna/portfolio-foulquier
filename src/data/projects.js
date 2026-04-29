@@ -1,4 +1,14 @@
-import { fanzineImages, lookbookShinjiImages, arthurImages, placeholders, fleursGrisesImages, studioHarcourtImages, lookbookAnthonyImages, campagneKleinodImages, ekaterinaImages } from './projectImages'
+import { 
+  fanzineImages, 
+  lookbookShinjiImages, 
+  arthurImages,  
+  fleursGrisesImages, 
+  studioHarcourtImages, 
+  lookbookAnthonyImages, 
+  campagneKleinodImages, 
+  ekaterinaImages,
+  placeholders
+} from './projectImages'
 
 /** Shown on `/` when no `:projectId` is in the URL. */
 export const defaultProjectId = 'fanzine'
