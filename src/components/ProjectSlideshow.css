@@ -46,8 +46,12 @@
   gap: 120px;
   height: 100%;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
+  overflow-y: hidden;
+  scroll-snap-type: x proximity;
+  scroll-behavior: auto;
+  overscroll-behavior: contain;
+  overscroll-behavior-y: none;
+  touch-action: pan-x;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
   scroll-padding-inline: 4px;
@@ -156,6 +160,7 @@
   width: 100%;
   height: 100%;
   border: 0;
+  pointer-events: none;
 }
 
 .project-slideshow__embed-poster {
@@ -330,10 +335,12 @@
   .project-slideshow__track {
     flex-direction: column;
     overflow-x: visible;
+    overflow-y: visible;
     scroll-snap-type: none;
     scroll-behavior: auto;
     gap: 3.5rem;
     padding-block: 0;
+    touch-action: auto;
   }
 
   .project-slideshow__spacer {

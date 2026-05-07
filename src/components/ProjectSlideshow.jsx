@@ -15,18 +15,53 @@ export default function ProjectSlideshow() {
 
 function ProjectSlider({items }) {
   const trackRef = useRef(null)
+  const scrollStopTimerRef = useRef(null)
   const [suppressChrome, setSuppressChrome] = useState(false)
+  const [isMobile, setIsMobile] = useState(() => window.matchMedia('(max-width: 799px)').matches)
 
   useEffect(() => {
-    if (!suppressChrome) return undefined
-    const reveal = () => setSuppressChrome(false)
-    window.addEventListener('mousemove', reveal, { passive: true })
-    return () => window.removeEventListener('mousemove', reveal)
-  }, [suppressChrome])
+    const mq = window.matchMedia('(max-width: 799px)')
+    const onChange = () => setIsMobile(mq.matches)
+    onChange()
+    if (typeof mq.addEventListener === 'function') {
+      mq.addEventListener('change', onChange)
+      return () => mq.removeEventListener('change', onChange)
+    }
+    mq.addListener(onChange)
+    return () => mq.removeListener(onChange)
+  }, [])
+
+  useEffect(() => () => {
+    if (scrollStopTimerRef.current) {
+      window.clearTimeout(scrollStopTimerRef.current)
+    }
+  }, [])
+
+  const markScrolling = useCallback(() => {
+    setSuppressChrome(true)
+    if (scrollStopTimerRef.current) {
+      window.clearTimeout(scrollStopTimerRef.current)
+    }
+    scrollStopTimerRef.current = window.setTimeout(() => {
+      setSuppressChrome(false)
+      scrollStopTimerRef.current = null
+    }, 140)
+  }, [])
 
   const handleTrackScroll = useCallback(() => {
-    setSuppressChrome(true)
-  }, [])
+    markScrolling()
+  }, [markScrolling])
+
+  const handleTrackWheel = useCallback((e) => {
+    if (isMobile || e.ctrlKey) return
+    const el = trackRef.current
+    if (!el) return
+    const horizontalDelta = e.deltaX + e.deltaY
+    if (horizontalDelta === 0) return
+    e.preventDefault()
+    el.scrollLeft += horizontalDelta
+    markScrolling()
+  }, [isMobile, markScrolling])
 
   const scroll = useCallback((dir) => {
     const el = trackRef.current
@@ -62,6 +97,7 @@ function ProjectSlider({items }) {
         ref={trackRef}
         className="project-slideshow__track"
         onScroll={handleTrackScroll}
+        onWheel={handleTrackWheel}
       >
         <div className="project-slideshow__spacer" aria-hidden="true" />
         {items.map((item, i) => (
