@@ -7,7 +7,12 @@ import {
   lookbookAnthonyImages, 
   campagneKleinodImages, 
   ekaterinaImages,
-  placeholders
+  polaShinjiImages,
+  gaetanImages,
+  lookbookLeaImages,
+  vallaurisImages,
+  placeholders,
+
 } from './projectImages'
 
 /** Shown on `/` when no `:projectId` is in the URL. */
@@ -133,18 +138,45 @@ export const projectsById = {
   },
   'pola-shinji': {
     title: 'Pola Shinji',
-    images: [placeholders.default, placeholders.default, placeholders.default, placeholders.default],
+    images: [
+      { src: polaShinjiImages.polaShinji01.desktop, mobileSrc: polaShinjiImages.polaShinji01.mobile, height: '70vh', width: '100%' },
+      { src: polaShinjiImages.polaShinji02.desktop, mobileSrc: polaShinjiImages.polaShinji02.mobile, height: '70vh', width: '100%' },
+      { src: polaShinjiImages.polaShinji03.desktop, mobileSrc: polaShinjiImages.polaShinji03.mobile, height: '100vh', width: '100%' },
+      { src: polaShinjiImages.polaShinji04.desktop, mobileSrc: polaShinjiImages.polaShinji04.mobile, height: '70vh', width: '100%' },
+      { src: polaShinjiImages.polaShinji05.desktop, mobileSrc: polaShinjiImages.polaShinji05.mobile, height: '70vh', width: '100%' },
+      { src: polaShinjiImages.polaShinji06.desktop, mobileSrc: polaShinjiImages.polaShinji06.mobile, height: '100vh', width: '100%' },
+      { src: polaShinjiImages.polaShinji07.desktop, mobileSrc: polaShinjiImages.polaShinji07.mobile, height: '70vh', width: '100%' },
+    ],
   },
   'gaetan': {
     title: 'Gaetan',
-    images: [placeholders.default, placeholders.default, placeholders.default, placeholders.default],
+    images: [
+      { src: gaetanImages.gaetan01.desktop, mobileSrc: gaetanImages.gaetan01.mobile, height: '70vh', width: '100%' },
+      { src: gaetanImages.gaetan02.desktop, mobileSrc: gaetanImages.gaetan02.mobile, height: '70vh', width: '100%' },
+      { src: gaetanImages.gaetan03.desktop, mobileSrc: gaetanImages.gaetan03.mobile, height: '100vh', width: '100%' },
+      { src: gaetanImages.gaetan04.desktop, mobileSrc: gaetanImages.gaetan04.mobile, height: '70vh', width: '100%' },
+      { src: gaetanImages.gaetan05.desktop, mobileSrc: gaetanImages.gaetan05.mobile, height: '70vh', width: '100%' },
+      { src: gaetanImages.gaetan06.desktop, mobileSrc: gaetanImages.gaetan06.mobile, height: '100vh', width: '100%' },
+    ],
   },
   'lookbook-lea': {
     title: 'Lookbook Léa',
-    images: [placeholders.default, placeholders.default, placeholders.default, placeholders.default],
+    images: [
+      { src: lookbookLeaImages.lookbookLea01.desktop, mobileSrc: lookbookLeaImages.lookbookLea01.mobile, height: '70vh', width: '100%' },
+      { src: lookbookLeaImages.lookbookLea02.desktop, mobileSrc: lookbookLeaImages.lookbookLea02.mobile, height: '70vh', width: '100%' },
+      { src: lookbookLeaImages.lookbookLea03.desktop, mobileSrc: lookbookLeaImages.lookbookLea03.mobile, height: '100vh', width: '100%' },
+      { src: lookbookLeaImages.lookbookLea04.desktop, mobileSrc: lookbookLeaImages.lookbookLea04.mobile, height: '70vh', width: '100%' },
+      { src: lookbookLeaImages.lookbookLea05.desktop, mobileSrc: lookbookLeaImages.lookbookLea05.mobile, height: '70vh', width: '100%' },
+      { src: lookbookLeaImages.lookbookLea06.desktop, mobileSrc: lookbookLeaImages.lookbookLea06.mobile, height: '100vh', width: '100%' },
+    ],
   },
   'vallauris': {
     title: 'Valauris',
-    images: [placeholders.default, placeholders.default, placeholders.default, placeholders.default],
+    images: [
+      { src: vallaurisImages.vallauris01.desktop, mobileSrc: vallaurisImages.vallauris01.mobile, height: '70vh', width: '100%' },
+      { src: vallaurisImages.vallauris02.desktop, mobileSrc: vallaurisImages.vallauris02.mobile, height: '70vh', width: '100%' },
+      { src: vallaurisImages.vallauris03.desktop, mobileSrc: vallaurisImages.vallauris03.mobile, height: '100vh', width: '100%' },
+      { src: vallaurisImages.vallauris04.desktop, mobileSrc: vallaurisImages.vallauris04.mobile, height: '70vh', width: '100%' },
+    ],
   }
 }

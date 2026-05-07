@@ -263,7 +263,107 @@ import ekaterina07Mobile from '../assets/projects/08_ekaterina/EKATERINA_07_MOBI
 
 // #endregion
 
+// #region Pola Shinji — imports
 
+// __________________________________________________________
+// Pola Shinji
+// __________________________________________________________
+
+import polaShinji01Desktop from '../assets/projects/09_pola_shinji/SHINJI_POLA_01_DESKTOP.jpg'
+import polaShinji01Mobile from '../assets/projects/09_pola_shinji/SHINJI_POLA_01_MOBILE.jpg'
+
+import polaShinji02Desktop from '../assets/projects/09_pola_shinji/SHINJI_POLA_02_DESKTOP.jpg'
+import polaShinji02Mobile from '../assets/projects/09_pola_shinji/SHINJI_POLA_02_MOBILE.jpg'
+
+import polaShinji03Desktop from '../assets/projects/09_pola_shinji/SHINJI_POLA_03_DESKTOP.jpg'
+import polaShinji03Mobile from '../assets/projects/09_pola_shinji/SHINJI_POLA_03_MOBILE.jpg'
+
+import polaShinji04Desktop from '../assets/projects/09_pola_shinji/SHINJI_POLA_04_DESKTOP.jpg'
+import polaShinji04Mobile from '../assets/projects/09_pola_shinji/SHINJI_POLA_04_MOBILE.jpg'
+
+import polaShinji05Desktop from '../assets/projects/09_pola_shinji/SHINJI_POLA_05_DESKTOP.jpg'
+import polaShinji05Mobile from '../assets/projects/09_pola_shinji/SHINJI_POLA_05_MOBILE.jpg'
+
+import polaShinji06Desktop from '../assets/projects/09_pola_shinji/SHINJI_POLA_06_DESKTOP.jpg'
+import polaShinji06Mobile from '../assets/projects/09_pola_shinji/SHINJI_POLA_06_MOBILE.jpg'
+
+import polaShinji07Desktop from '../assets/projects/09_pola_shinji/SHINJI_POLA_07_DESKTOP.jpg'
+import polaShinji07Mobile from '../assets/projects/09_pola_shinji/SHINJI_POLA_07_MOBILE.jpg'
+// #endregion
+
+// #region Gaetan — imports
+
+// __________________________________________________________
+// Gaetan
+// __________________________________________________________
+
+import gaetan01Desktop from '../assets/projects/10_gaetan/GAETAN_01_DESKTOP.jpg'
+import gaetan01Mobile from '../assets/projects/10_gaetan/GAETAN_01_MOBILE.jpg'
+
+import gaetan02Desktop from '../assets/projects/10_gaetan/GAETAN_02_DESKTOP.jpg'
+import gaetan02Mobile from '../assets/projects/10_gaetan/GAETAN_02_MOBILE.jpg'
+
+import gaetan03Desktop from '../assets/projects/10_gaetan/GAETAN_03_DESKTOP.jpg'
+import gaetan03Mobile from '../assets/projects/10_gaetan/GAETAN_03_MOBILE.jpg'
+
+import gaetan04Desktop from '../assets/projects/10_gaetan/GAETAN_04_DESKTOP.jpg'
+import gaetan04Mobile from '../assets/projects/10_gaetan/GAETAN_04_MOBILE.jpg'
+
+import gaetan05Desktop from '../assets/projects/10_gaetan/GAETAN_05_DESKTOP.jpg'
+import gaetan05Mobile from '../assets/projects/10_gaetan/GAETAN_05_MOBILE.jpg'
+
+import gaetan06Desktop from '../assets/projects/10_gaetan/GAETAN_06_DESKTOP.jpg'
+import gaetan06Mobile from '../assets/projects/10_gaetan/GAETAN_06_MOBILE.jpg'
+
+// #endregion
+
+// #region Lookbook Lea — imports
+
+// __________________________________________________________
+// Lookbook Lea
+// __________________________________________________________
+
+import lookbookLea01Desktop from '../assets/projects/11_lookbook_lea/LOOKBOOK_LEA_01_DESKTOP.jpg'
+import lookbookLea01Mobile from '../assets/projects/11_lookbook_lea/LOOKBOOK_LEA_01_MOBILE.jpg'
+
+import lookbookLea02Desktop from '../assets/projects/11_lookbook_lea/LOOKBOOK_LEA_02_DESKTOP.jpg'
+import lookbookLea02Mobile from '../assets/projects/11_lookbook_lea/LOOKBOOK_LEA_02_MOBILE.jpg'
+
+import lookbookLea03Desktop from '../assets/projects/11_lookbook_lea/LOOKBOOK_LEA_03_DESKTOP.jpg'
+import lookbookLea03Mobile from '../assets/projects/11_lookbook_lea/LOOKBOOK_LEA_03_MOBILE.jpg'
+
+import lookbookLea04Desktop from '../assets/projects/11_lookbook_lea/LOOKBOOK_LEA_04_DESKTOP.jpg'
+import lookbookLea04Mobile from '../assets/projects/11_lookbook_lea/LOOKBOOK_LEA_04_MOBILE.jpg'
+
+import lookbookLea05Desktop from '../assets/projects/11_lookbook_lea/LOOKBOOK_LEA_05_DESKTOP.jpg'
+import lookbookLea05Mobile from '../assets/projects/11_lookbook_lea/LOOKBOOK_LEA_05_MOBILE.jpg'
+
+import lookbookLea06Desktop from '../assets/projects/11_lookbook_lea/LOOKBOOK_LEA_06_DESKTOP.jpg'
+import lookbookLea06Mobile from '../assets/projects/11_lookbook_lea/LOOKBOOK_LEA_06_MOBILE.jpg'
+
+
+// #endregion 
+
+// #region Vallauris — imports
+
+// __________________________________________________________
+// Vallauris
+// __________________________________________________________
+
+import vallauris01Desktop from '../assets/projects/12_vallauris/VALLAURIS_01_DESKTOP.jpg'
+import vallauris01Mobile from '../assets/projects/12_vallauris/VALLAURIS_01_MOBILE.jpg'
+
+import vallauris02Desktop from '../assets/projects/12_vallauris/VALLAURIS_02_DESKTOP.jpg'
+import vallauris02Mobile from '../assets/projects/12_vallauris/VALLAURIS_02_MOBILE.jpg'
+
+import vallauris03Desktop from '../assets/projects/12_vallauris/VALLAURIS_03_DESKTOP.jpg'
+import vallauris03Mobile from '../assets/projects/12_vallauris/VALLAURIS_03_MOBILE.jpg'
+
+import vallauris04Desktop from '../assets/projects/12_vallauris/VALLAURIS_04_DESKTOP.jpg'
+import vallauris04Mobile from '../assets/projects/12_vallauris/VALLAURIS_04_MOBILE.jpg'
+
+
+// #endregion
 
 export const placeholders = {
   default: placeholder,
@@ -570,5 +670,109 @@ export const ekaterinaImages = {
   ekaterina07: {
     desktop: ekaterina07Desktop,
     mobile: ekaterina07Mobile,
+  },
+}
+
+export const polaShinjiImages = {
+  polaShinji01: {
+    desktop: polaShinji01Desktop,
+    mobile: polaShinji01Mobile,
+  },
+  polaShinji02: {
+    desktop: polaShinji02Desktop,
+    mobile: polaShinji02Mobile,
+  },
+  polaShinji03: {
+    desktop: polaShinji03Desktop,
+    mobile: polaShinji03Mobile,
+  },
+  polaShinji04: {
+    desktop: polaShinji04Desktop,
+    mobile: polaShinji04Mobile,
+  },
+  polaShinji05: {
+    desktop: polaShinji05Desktop,
+    mobile: polaShinji05Mobile,
+  },
+  polaShinji06: {
+    desktop: polaShinji06Desktop,
+    mobile: polaShinji06Mobile,
+  },
+  polaShinji07: {
+    desktop: polaShinji07Desktop,
+    mobile: polaShinji07Mobile,
+  },
+}
+
+export const gaetanImages = {
+  gaetan01: {
+    desktop: gaetan01Desktop,
+    mobile: gaetan01Mobile,
+  },
+  gaetan02: {
+    desktop: gaetan02Desktop,
+    mobile: gaetan02Mobile,
+  },
+  gaetan03: {
+    desktop: gaetan03Desktop,
+    mobile: gaetan03Mobile,
+  },
+  gaetan04: {
+    desktop: gaetan04Desktop,
+    mobile: gaetan04Mobile,
+  },
+  gaetan05: {
+    desktop: gaetan05Desktop,
+    mobile: gaetan05Mobile,
+  },
+  gaetan06: {
+    desktop: gaetan06Desktop,
+    mobile: gaetan06Mobile,
+  },
+}
+
+export const lookbookLeaImages = {
+  lookbookLea01: {
+    desktop: lookbookLea01Desktop,
+    mobile: lookbookLea01Mobile,
+  },
+  lookbookLea02: {
+    desktop: lookbookLea02Desktop,
+    mobile: lookbookLea02Mobile,
+  },
+  lookbookLea03: {
+    desktop: lookbookLea03Desktop,
+    mobile: lookbookLea03Mobile,
+  },
+  lookbookLea04: {
+    desktop: lookbookLea04Desktop,
+    mobile: lookbookLea04Mobile,
+  }, 
+  lookbookLea05: {
+    desktop: lookbookLea05Desktop,
+    mobile: lookbookLea05Mobile,
+  },
+  lookbookLea06: {
+    desktop: lookbookLea06Desktop,
+    mobile: lookbookLea06Mobile,
+  },
+}
+
+export const vallaurisImages = {
+  vallauris01: {
+    desktop: vallauris01Desktop,
+    mobile: vallauris01Mobile,
+  },
+  vallauris02: {
+    desktop: vallauris02Desktop,
+    mobile: vallauris02Mobile,
+  },
+  vallauris03: {
+    desktop: vallauris03Desktop,
+    mobile: vallauris03Mobile,
+  },
+  vallauris04: {
+    desktop: vallauris04Desktop,
+    mobile: vallauris04Mobile,
   },
 }
