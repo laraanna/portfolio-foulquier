@@ -20,7 +20,7 @@
 
 .project-slideshow__back-to-top {
   display: none;
-  margin: 2rem auto 1rem;
+  margin: 2rem auto 5rem;
   width: fit-content;
   cursor: pointer;
   text-transform: uppercase;
@@ -263,7 +263,7 @@
   font-weight: normal;
   font-style: normal;
   font-family: 'squarespace-ui-font', sans-serif;
-  speak: none;
+  /* speak: none; */
   -webkit-font-smoothing: antialiased;
   cursor: pointer;
   box-shadow: none;
@@ -313,6 +313,7 @@
 /* Under 800px: stack images vertically (no horizontal slider) */
 @media (max-width: 799px) {
   .project-slideshow {
+    padding-top: 4rem;
     height: auto;
     max-height: none;
     overflow: visible;

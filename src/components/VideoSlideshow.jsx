@@ -15,7 +15,16 @@ function toYoutubeId(idOrUrl) {
 
 function embedSrc(youtubeId, { autoplay = false } = {}) {
   const id = toYoutubeId(youtubeId)
-  const q = new URLSearchParams({ rel: '0', modestbranding: '1' })
+  const q = new URLSearchParams({
+    rel: '0',
+    modestbranding: '1',
+    enablejsapi: '1',
+    playsinline: '1',
+    controls: '0',
+    iv_load_policy: '3',
+    fs: '0',
+    disablekb: '1',
+  })
   if (autoplay) q.set('autoplay', '1')
   return `https://www.youtube-nocookie.com/embed/${id}?${q}`
 }
@@ -27,10 +36,27 @@ function youtubePosterUrl(youtubeId) {
 
 function VideoSlider({ items }) {
   const trackRef = useRef(null)
+  const slideRefs = useRef([])
+  const iframeRefs = useRef({})
   const [suppressChrome, setSuppressChrome] = useState(false)
-  const [embedStarted, setEmbedStarted] = useState({})
-  const startEmbed = (i) =>
-    setEmbedStarted((s) => (s[i] ? s : { ...s, [i]: true }))
+  const [isMobile, setIsMobile] = useState(() => window.matchMedia('(max-width: 799px)').matches)
+  const [activeEmbedIndex, setActiveEmbedIndex] = useState(null)
+  const [startedEmbeds, setStartedEmbeds] = useState({})
+  const startEmbed = (i) => setActiveEmbedIndex(i)
+
+  const sendPlayerCommand = useCallback((index, func) => {
+    const frame = iframeRefs.current[index]
+    const win = frame?.contentWindow
+    if (!win) return
+    win.postMessage(
+      JSON.stringify({
+        event: 'command',
+        func,
+        args: [],
+      }),
+      '*',
+    )
+  }, [])
 
   useEffect(() => {
     if (!suppressChrome) return undefined
@@ -39,9 +65,82 @@ function VideoSlider({ items }) {
     return () => window.removeEventListener('mousemove', reveal)
   }, [suppressChrome])
 
+  const updateActiveVideo = useCallback(() => {
+    if (isMobile) return
+    const triggerX = window.innerWidth * 0.45
+    let nextActiveIndex = null
+    let closestIndex = null
+    let closestDistance = Number.POSITIVE_INFINITY
+
+    for (let i = 0; i < slideRefs.current.length; i += 1) {
+      const slide = slideRefs.current[i]
+      if (!slide) continue
+      const rect = slide.getBoundingClientRect()
+
+      const distanceToTrigger =
+        rect.left > triggerX
+          ? rect.left - triggerX
+          : rect.right < triggerX
+            ? triggerX - rect.right
+            : 0
+
+      if (distanceToTrigger < closestDistance) {
+        closestDistance = distanceToTrigger
+        closestIndex = i
+      }
+
+      if (rect.left <= triggerX && rect.right >= triggerX) {
+        nextActiveIndex = i
+        break
+      }
+    }
+
+    if (nextActiveIndex === null) {
+      nextActiveIndex = closestIndex
+    }
+
+    setActiveEmbedIndex((prev) => (prev === nextActiveIndex ? prev : nextActiveIndex))
+  }, [isMobile])
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 799px)')
+    const onChange = () => setIsMobile(mq.matches)
+    onChange()
+    if (typeof mq.addEventListener === 'function') {
+      mq.addEventListener('change', onChange)
+      return () => mq.removeEventListener('change', onChange)
+    }
+    mq.addListener(onChange)
+    return () => mq.removeListener(onChange)
+  }, [])
+
+  useEffect(() => {
+    updateActiveVideo()
+    const onResize = () => updateActiveVideo()
+    window.addEventListener('resize', onResize, { passive: true })
+    return () => window.removeEventListener('resize', onResize)
+  }, [items.length, updateActiveVideo])
+
+  useEffect(() => {
+    if (activeEmbedIndex === null) return
+    setStartedEmbeds((prev) =>
+      prev[activeEmbedIndex] ? prev : { ...prev, [activeEmbedIndex]: true },
+    )
+  }, [activeEmbedIndex])
+
+  useEffect(() => {
+    Object.keys(startedEmbeds).forEach((idxStr) => {
+      const idx = Number(idxStr)
+      if (Number.isNaN(idx)) return
+      sendPlayerCommand(idx, idx === activeEmbedIndex ? 'playVideo' : 'pauseVideo')
+    })
+  }, [activeEmbedIndex, sendPlayerCommand, startedEmbeds])
+
   const handleTrackScroll = useCallback(() => {
     setSuppressChrome(true)
-  }, [])
+    if (isMobile) return
+    updateActiveVideo()
+  }, [isMobile, updateActiveVideo])
 
   const scroll = useCallback((dir) => {
     const el = trackRef.current
@@ -82,6 +181,9 @@ function VideoSlider({ items }) {
           <div
             key={item.youtubeId + String(i)}
             className="project-slideshow__slide"
+            ref={(el) => {
+              slideRefs.current[i] = el
+            }}
             style={{
               '--slide-height': item.slideHeight,
               '--slide-mobile-width': item.slideMobileWidth,
@@ -89,12 +191,18 @@ function VideoSlider({ items }) {
           >
             <div className="project-slideshow__media project-slideshow__media--embed project-slideshow__media--no-link">
               <div className="project-slideshow__embed">
-                {embedStarted[i] ? (
+                {startedEmbeds[i] ? (
                   <iframe
+                    ref={(el) => {
+                      iframeRefs.current[i] = el
+                    }}
                     title={item.iframeTitle}
-                    src={item.embedUrlAutoplay}
+                    src={item.embedUrl}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowFullScreen
+                    onLoad={() => {
+                      sendPlayerCommand(i, i === activeEmbedIndex ? 'playVideo' : 'pauseVideo')
+                    }}
                   />
                 ) : (
                   <button
@@ -178,7 +286,7 @@ export default function VideoSlideshow() {
     const hoverPosition = v.hoverPosition === 'bottom' ? 'bottom' : 'top'
     return {
       youtubeId: id,
-      embedUrlAutoplay: embedSrc(id, { autoplay: true }),
+      embedUrl: embedSrc(id),
       posterUrl: v.poster || youtubePosterUrl(id),
       posterUrlMobile: v.posterMobile,
       iframeTitle: v.text ? `${title} — ${v.text}` : `${title} — ${i + 1} of ${raw.length}`,

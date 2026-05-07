@@ -169,7 +169,6 @@
 
 .navigation__item--has-sub:hover {
   border-color: #000;
-  border: 1px solid black;
 }
 
 .navigation--suppress-hover .navigation__item--has-sub:hover .navigation__sublist {
@@ -224,7 +223,7 @@
   }
 
   .navigation {
-    --nav-mobile-icon-size: 1.5rem;
+    --nav-mobile-icon-size: 1.8rem;
     position: relative;
     display: grid;
     grid-template-columns: 1fr auto 1fr;
