@@ -108,6 +108,7 @@
   position: relative;
   padding-left: 15px;
   padding-right: 15px;
+  border: 1px solid transparent;
 }
 
 .navigation__item--has-sub::after {
@@ -164,6 +165,11 @@
   visibility: visible;
   /* transform: translateY(0); */
   pointer-events: auto;
+}
+
+.navigation__item--has-sub:hover {
+  border-color: #000;
+  border: 1px solid black;
 }
 
 .navigation--suppress-hover .navigation__item--has-sub:hover .navigation__sublist {
