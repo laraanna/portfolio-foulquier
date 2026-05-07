@@ -2,11 +2,46 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="shortcut icon" href="/favicon.ico" />
+    <link id="dynamic-favicon" rel="icon" type="image/png" href="/web-app-manifest-512x512.png" sizes="512x512" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
+    <script>
+      (() => {
+        const darkQuery = window.matchMedia('(prefers-color-scheme: dark)')
+
+        const clearExistingFavicons = () => {
+          document.querySelectorAll('link[rel="icon"], link[rel="shortcut icon"]').forEach((el) => {
+            el.remove()
+          })
+        }
+
+        const appendFavicon = (rel, href, sizes) => {
+          const link = document.createElement('link')
+          link.rel = rel
+          link.type = 'image/png'
+          link.href = `${href}?v=${Date.now()}`
+          if (sizes) link.sizes = sizes
+          document.head.appendChild(link)
+        }
+
+        const applyFavicon = (isDark) => {
+          clearExistingFavicons()
+          if (isDark) {
+            appendFavicon('icon', '/web-app-manifest-512x512.png', '512x512')
+          } else {
+            appendFavicon('icon', '/favicon-96x96.png', '96x96')
+          }
+        }
+
+        applyFavicon(darkQuery.matches)
+
+        if (typeof darkQuery.addEventListener === 'function') {
+          darkQuery.addEventListener('change', (event) => applyFavicon(event.matches))
+        } else if (typeof darkQuery.addListener === 'function') {
+          darkQuery.addListener((event) => applyFavicon(event.matches))
+        }
+      })()
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tony Foulquier</title>
     <meta name="description" content="PHOTOGRAPHE ET DIRECTEUR ARTISTIQUE BASÉ A PARIS.">

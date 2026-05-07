@@ -1,3 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" id="Calque_2" data-name="Calque 2" viewBox="0 0 763.16 512.77" width="763.16" height="512.77"><metadata><rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"><rdf:Description><dc:creator>RealFaviconGenerator</dc:creator><dc:source>https://realfavicongenerator.net</dc:source></rdf:Description></rdf:RDF></metadata><g id="Calque_1-2" data-name="Calque 1">
-    <path d="M763.16,103.76V0H0v103.76h199.28c11.05,0,20,8.95,20,20v389.02s104.75,0,104.75,0V123.76c0-11.05,8.95-20,20-20h74.86c11.05,0,20,8.95,20,20v389.02s101.75,0,101.75,0v-179.51c0-11.05,8.95-20,20-20h188.48v-104.76h-188.48c-11.05,0-20-8.95-20-20v-64.76c0-11.05,8.95-20,20-20h202.51Z"></path>
-  </g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" id="Calque_2" data-name="Calque 2" viewBox="0 0 763.16 512.77" width="763.16" height="512.77">
+  <metadata>
+    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+      <rdf:Description>
+        <dc:creator>RealFaviconGenerator</dc:creator>
+        <dc:source>https://realfavicongenerator.net</dc:source>
+      </rdf:Description>
+    </rdf:RDF>
+  </metadata>
+  <g id="Calque_1-2" data-name="Calque 1" transform="translate(133.55 89.73) scale(0.65)">
+    <path d="M763.16,103.76V0H0v103.76h199.28c11.05,0,20,8.95,20,20v389.02s104.75,0,104.75,0V123.76c0-11.05,8.95-20,20-20h74.86c11.05,0,20,8.95,20,20v389.02s101.75,0,101.75,0v-179.51c0-11.05,8.95-20,20-20h188.48v-104.76h-188.48c-11.05,0-20-8.95-20-20v-64.76c0-11.05,8.95-20,20-20h202.51Z" />
+  </g>
+</svg>
