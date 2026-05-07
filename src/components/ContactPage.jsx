@@ -1,0 +1,21 @@
+import contactDesktop from '../assets/contact/CARTE_VISITE_DESKTOP.jpg'
+import contactMobile from '../assets/contact/CARTE_VISITE_MOBILE.jpg'
+import './ContactPage.css'
+
+export default function ContactPage() {
+  return (
+    <section className="contact-page" aria-label="Contact">
+      <div className="contact-page__media">
+        <picture>
+          <source media="(max-width: 799px)" srcSet={contactMobile} />
+          <img src={contactDesktop} alt="Contact details" />
+        </picture>
+        <p className="contact-page__text">
+          PHOTOGRAPHE ET DIRECTEUR
+          <br />
+          ARTISTIQUE BASÉ A PARIS
+        </p>
+      </div>
+    </section>
+  )
+}
