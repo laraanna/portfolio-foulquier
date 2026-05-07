@@ -383,6 +383,10 @@
     object-fit: cover;
   }
 
+  .project-slideshow__media:hover .project-slideshow__hover-text {
+    opacity: 0;
+  }
+
   .project-slideshow__back-to-top {
     display: block;
   }
