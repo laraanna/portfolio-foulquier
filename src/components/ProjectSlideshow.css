@@ -20,7 +20,7 @@
 
 .project-slideshow__back-to-top {
   display: none;
-  margin: 2rem auto 5rem;
+  margin: 2rem auto 3rem;
   width: fit-content;
   cursor: pointer;
   text-transform: uppercase;
