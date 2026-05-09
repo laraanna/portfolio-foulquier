@@ -43,6 +43,8 @@ function VideoSlider({ items }) {
   const [isMobile, setIsMobile] = useState(() => window.matchMedia('(max-width: 799px)').matches)
   const [activeEmbedIndex, setActiveEmbedIndex] = useState(null)
   const [startedEmbeds, setStartedEmbeds] = useState({})
+  const [audioUnlocked, setAudioUnlocked] = useState(false)
+  const [pausedEmbedIndex, setPausedEmbedIndex] = useState(null)
   const startEmbed = (i) => setActiveEmbedIndex(i)
 
   const sendPlayerCommand = useCallback((index, func) => {
@@ -126,6 +128,20 @@ function VideoSlider({ items }) {
   }, [])
 
   useEffect(() => {
+    if (audioUnlocked) return undefined
+    const unlockAudio = () => setAudioUnlocked(true)
+    const opts = { passive: true, once: true }
+    window.addEventListener('pointerdown', unlockAudio, opts)
+    window.addEventListener('keydown', unlockAudio, opts)
+    window.addEventListener('touchstart', unlockAudio, opts)
+    return () => {
+      window.removeEventListener('pointerdown', unlockAudio)
+      window.removeEventListener('keydown', unlockAudio)
+      window.removeEventListener('touchstart', unlockAudio)
+    }
+  }, [audioUnlocked])
+
+  useEffect(() => {
     updateActiveVideo()
     const onResize = () => updateActiveVideo()
     window.addEventListener('resize', onResize, { passive: true })
@@ -140,12 +156,29 @@ function VideoSlider({ items }) {
   }, [activeEmbedIndex])
 
   useEffect(() => {
+    if (pausedEmbedIndex === null) return
+    if (pausedEmbedIndex !== activeEmbedIndex) {
+      setPausedEmbedIndex(null)
+    }
+  }, [activeEmbedIndex, pausedEmbedIndex])
+
+  useEffect(() => {
     Object.keys(startedEmbeds).forEach((idxStr) => {
       const idx = Number(idxStr)
       if (Number.isNaN(idx)) return
-      sendPlayerCommand(idx, idx === activeEmbedIndex ? 'playVideo' : 'pauseVideo')
+      if (idx === activeEmbedIndex) {
+        sendPlayerCommand(idx, audioUnlocked ? 'unMute' : 'mute')
+        sendPlayerCommand(idx, pausedEmbedIndex === idx ? 'pauseVideo' : 'playVideo')
+      } else {
+        sendPlayerCommand(idx, 'pauseVideo')
+      }
     })
-  }, [activeEmbedIndex, sendPlayerCommand, startedEmbeds])
+  }, [activeEmbedIndex, audioUnlocked, pausedEmbedIndex, sendPlayerCommand, startedEmbeds])
+
+  const handleEmbedToggle = useCallback((index) => {
+    if (index !== activeEmbedIndex) return
+    setPausedEmbedIndex((prev) => (prev === index ? null : index))
+  }, [activeEmbedIndex])
 
   const handleTrackScroll = useCallback(() => {
     markScrolling()
@@ -159,11 +192,14 @@ function VideoSlider({ items }) {
     if (!el) return
     const horizontalDelta = e.deltaX + e.deltaY
     if (horizontalDelta === 0) return
+    if (!audioUnlocked) {
+      setAudioUnlocked(true)
+    }
     e.preventDefault()
     el.scrollLeft += horizontalDelta
     markScrolling()
     updateActiveVideo()
-  }, [isMobile, markScrolling, updateActiveVideo])
+  }, [audioUnlocked, isMobile, markScrolling, updateActiveVideo])
 
   const scroll = useCallback((dir) => {
     const el = trackRef.current
@@ -216,18 +252,29 @@ function VideoSlider({ items }) {
             <div className="project-slideshow__media project-slideshow__media--embed project-slideshow__media--no-link">
               <div className="project-slideshow__embed">
                 {startedEmbeds[i] ? (
-                  <iframe
-                    ref={(el) => {
-                      iframeRefs.current[i] = el
-                    }}
-                    title={item.iframeTitle}
-                    src={item.embedUrl}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                    onLoad={() => {
-                      sendPlayerCommand(i, i === activeEmbedIndex ? 'playVideo' : 'pauseVideo')
-                    }}
-                  />
+                  <>
+                    <iframe
+                      ref={(el) => {
+                        iframeRefs.current[i] = el
+                      }}
+                      title={item.iframeTitle}
+                      src={item.embedUrl}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      onLoad={() => {
+                        sendPlayerCommand(i, audioUnlocked ? 'unMute' : 'mute')
+                        sendPlayerCommand(i, i === activeEmbedIndex ? 'playVideo' : 'pauseVideo')
+                      }}
+                    />
+                    {i === activeEmbedIndex ? (
+                      <button
+                        type="button"
+                        className="project-slideshow__embed-toggle"
+                        onClick={() => handleEmbedToggle(i)}
+                        aria-label={pausedEmbedIndex === i ? 'Play video' : 'Pause video'}
+                      />
+                    ) : null}
+                  </>
                 ) : (
                   <button
                     type="button"

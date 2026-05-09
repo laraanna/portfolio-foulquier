@@ -188,6 +188,17 @@
   outline-offset: 3px;
 }
 
+.project-slideshow__embed-toggle {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
 .project-slideshow__embed-poster picture {
   position: absolute;
   inset: 0;
