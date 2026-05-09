@@ -121,7 +121,7 @@ export default function Navigation() {
         aria-label="Main"
         ref={navRef}
       >
-        <Link to="/" className="navigation__brand" aria-label="Home">
+        <Link to="/" className="navigation__brand" aria-label="Home" onClick={closeMenu}>
           <img src={monogramIcon} alt="" className="navigation__brand-icon" />
         </Link>
         <button

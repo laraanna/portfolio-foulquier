@@ -6,10 +6,17 @@ export default function ContactPage() {
   return (
     <section className="contact-page" aria-label="Contact">
       <div className="contact-page__media">
-        <picture>
-          <source media="(max-width: 799px)" srcSet={contactMobile} />
-          <img src={contactDesktop} alt="Contact details" />
-        </picture>
+        <div className="contact-page__image-wrap">
+          <picture>
+            <source media="(max-width: 799px)" srcSet={contactMobile} />
+            <img src={contactDesktop} alt="Contact details" />
+          </picture>
+          <a
+            className="contact-page__hotspot"
+            href="mailto:contact@tonyfoulquier.com"
+            aria-label="Send email to contact@tonyfoulquier.com"
+          />
+        </div>
         <p className="contact-page__text">
           PHOTOGRAPHE ET DIRECTEUR
           <br />

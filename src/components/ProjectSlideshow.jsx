@@ -13,7 +13,7 @@ export default function ProjectSlideshow() {
   )
 }
 
-function ProjectSlider({ items, disableMobileLinks = false }) {
+function ProjectSlider({ items }) {
   const trackRef = useRef(null)
   const scrollStopTimerRef = useRef(null)
   const [suppressChrome, setSuppressChrome] = useState(false)
@@ -111,12 +111,12 @@ function ProjectSlider({ items, disableMobileLinks = false }) {
           >
             <div
               className={
-                item.link && !(isMobile && disableMobileLinks)
+                item.link
                   ? 'project-slideshow__media'
                   : 'project-slideshow__media project-slideshow__media--no-link'
               }
             >
-              {item.link && !(isMobile && disableMobileLinks) ? (
+              {item.link ? (
                 <Link to={item.link}>
                   <picture>
                     {item.mobileImage ? (
@@ -170,7 +170,6 @@ function ProjectSlider({ items, disableMobileLinks = false }) {
 function ProjectSlideshowInner({ projectId }) {
   const resolvedId = projectId ?? defaultProjectId
   const project = projectsById[resolvedId]
-  const disableMobileLinks = resolvedId === defaultProjectId
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
@@ -219,7 +218,7 @@ function ProjectSlideshowInner({ projectId }) {
 
   return (
     <section className="project-slideshow" aria-label={title}>
-      <ProjectSlider title={title} items={items} disableMobileLinks={disableMobileLinks} />
+      <ProjectSlider title={title} items={items} />
       <div
         className="project-slideshow__back-to-top"
         role="button"

@@ -12,11 +12,24 @@
   width: min(94vw, 860px);
 }
 
+.contact-page__image-wrap {
+  position: relative;
+}
+
 .contact-page__media picture,
 .contact-page__media img {
   display: block;
   width: 100%;
   height: auto;
+}
+
+.contact-page__hotspot {
+  position: absolute;
+  right: 5%;
+  bottom: 15%;
+  width: 30%;
+  height: 20%;
+  z-index: 1;
 }
 
 .contact-page__text {
@@ -43,5 +56,12 @@
     margin-top: 0.75rem;
     padding-left: 35px;
     font-size: 0.7rem;
+  }
+
+  .contact-page__hotspot {
+    right: 10%;
+    bottom: 50%;
+    width: 60%;
+    height: 15%;
   }
 }
