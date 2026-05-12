@@ -167,8 +167,10 @@
   pointer-events: auto;
 }
 
-.navigation__item--has-sub:hover {
+.navigation__item--has-sub:hover,
+.navigation__item:not(.navigation__item--has-sub):hover {
   border-color: #000;
+  background-color: #fff;
 }
 
 .navigation--suppress-hover .navigation__item--has-sub:hover .navigation__sublist {
