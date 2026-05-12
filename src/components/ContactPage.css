@@ -21,6 +21,7 @@
   display: block;
   width: 100%;
   height: auto;
+  user-select: none;
 }
 
 .contact-page__hotspot {

@@ -1,9 +1,5 @@
 import { useRef, useCallback, useEffect, useState } from 'react'
 import { videoPage } from '../data/videos'
-import {
-  protectedImageEventProps,
-  protectedMediaEventProps,
-} from '../utils/protectedMedia'
 import './ProjectSlideshow.css'
 
 function toYoutubeId(idOrUrl) {
@@ -17,7 +13,7 @@ function toYoutubeId(idOrUrl) {
   return s
 }
 
-function embedSrc(youtubeId, { autoplay = false } = {}) {
+function embedSrc(youtubeId, { autoplay = false, muted = false } = {}) {
   const id = toYoutubeId(youtubeId)
   const q = new URLSearchParams({
     rel: '0',
@@ -29,7 +25,11 @@ function embedSrc(youtubeId, { autoplay = false } = {}) {
     fs: '0',
     disablekb: '1',
   })
+  if (typeof window !== 'undefined') {
+    q.set('origin', window.location.origin)
+  }
   if (autoplay) q.set('autoplay', '1')
+  if (muted) q.set('mute', '1')
   return `https://www.youtube-nocookie.com/embed/${id}?${q}`
 }
 
@@ -154,10 +154,16 @@ function VideoSlider({ items }) {
 
   useEffect(() => {
     if (activeEmbedIndex === null) return
-    setStartedEmbeds((prev) =>
-      prev[activeEmbedIndex] ? prev : { ...prev, [activeEmbedIndex]: true },
-    )
-  }, [activeEmbedIndex])
+    const activeItem = items[activeEmbedIndex]
+    if (!activeItem) return
+    setStartedEmbeds((prev) => {
+      if (prev[activeEmbedIndex]) return prev
+      return {
+        ...prev,
+        [activeEmbedIndex]: embedSrc(activeItem.youtubeId, { autoplay: true, muted: true }),
+      }
+    })
+  }, [activeEmbedIndex, items])
 
   useEffect(() => {
     if (pausedEmbedIndex === null) return
@@ -253,10 +259,7 @@ function VideoSlider({ items }) {
               '--slide-mobile-width': item.slideMobileWidth,
             }}
           >
-            <div
-              className="project-slideshow__media project-slideshow__media--embed project-slideshow__media--no-link"
-              {...protectedMediaEventProps}
-            >
+            <div className="project-slideshow__media project-slideshow__media--embed project-slideshow__media--no-link">
               <div className="project-slideshow__embed">
                 {startedEmbeds[i] ? (
                   <>
@@ -265,12 +268,17 @@ function VideoSlider({ items }) {
                         iframeRefs.current[i] = el
                       }}
                       title={item.iframeTitle}
-                      src={item.embedUrl}
+                      src={startedEmbeds[i]}
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                       allowFullScreen
                       onLoad={() => {
-                        sendPlayerCommand(i, audioUnlocked ? 'unMute' : 'mute')
-                        sendPlayerCommand(i, i === activeEmbedIndex ? 'playVideo' : 'pauseVideo')
+                        if (i !== activeEmbedIndex) {
+                          sendPlayerCommand(i, 'pauseVideo')
+                          return
+                        }
+                        if (audioUnlocked) {
+                          sendPlayerCommand(i, 'unMute')
+                        }
                       }}
                     />
                     {i === activeEmbedIndex ? (
@@ -300,7 +308,6 @@ function VideoSlider({ items }) {
                           alt=""
                           loading="lazy"
                           decoding="async"
-                          {...protectedImageEventProps}
                         />
                       </picture>
                     ) : (
@@ -309,7 +316,6 @@ function VideoSlider({ items }) {
                         alt=""
                         loading="lazy"
                         decoding="async"
-                        {...protectedImageEventProps}
                       />
                     )}
                     <span
@@ -366,7 +372,6 @@ export default function VideoSlideshow() {
     const hoverPosition = v.hoverPosition === 'bottom' ? 'bottom' : 'top'
     return {
       youtubeId: id,
-      embedUrl: embedSrc(id),
       posterUrl: v.poster || youtubePosterUrl(id),
       posterUrlMobile: v.posterMobile,
       iframeTitle: v.text ? `${title} — ${v.text}` : `${title} — ${i + 1} of ${raw.length}`,
