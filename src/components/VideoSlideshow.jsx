@@ -1,5 +1,9 @@
 import { useRef, useCallback, useEffect, useState } from 'react'
 import { videoPage } from '../data/videos'
+import {
+  protectedImageEventProps,
+  protectedMediaEventProps,
+} from '../utils/protectedMedia'
 import './ProjectSlideshow.css'
 
 function toYoutubeId(idOrUrl) {
@@ -249,7 +253,10 @@ function VideoSlider({ items }) {
               '--slide-mobile-width': item.slideMobileWidth,
             }}
           >
-            <div className="project-slideshow__media project-slideshow__media--embed project-slideshow__media--no-link">
+            <div
+              className="project-slideshow__media project-slideshow__media--embed project-slideshow__media--no-link"
+              {...protectedMediaEventProps}
+            >
               <div className="project-slideshow__embed">
                 {startedEmbeds[i] ? (
                   <>
@@ -293,6 +300,7 @@ function VideoSlider({ items }) {
                           alt=""
                           loading="lazy"
                           decoding="async"
+                          {...protectedImageEventProps}
                         />
                       </picture>
                     ) : (
@@ -301,6 +309,7 @@ function VideoSlider({ items }) {
                         alt=""
                         loading="lazy"
                         decoding="async"
+                        {...protectedImageEventProps}
                       />
                     )}
                     <span

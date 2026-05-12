@@ -60,6 +60,12 @@ body {
   letter-spacing: 0.15em;
 }
 
+img[draggable='false'] {
+  -webkit-user-drag: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
 #root {
   max-width: 100%;
   min-height: 100svh;

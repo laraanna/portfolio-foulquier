@@ -1,6 +1,10 @@
 import { useRef, useCallback, useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { projectsById, defaultProjectId } from '../data/projects'
+import {
+  protectedImageEventProps,
+  protectedMediaEventProps,
+} from '../utils/protectedMedia'
 import './ProjectSlideshow.css'
 
 export default function ProjectSlideshow() {
@@ -115,6 +119,7 @@ function ProjectSlider({ items }) {
                   ? 'project-slideshow__media'
                   : 'project-slideshow__media project-slideshow__media--no-link'
               }
+              {...protectedMediaEventProps}
             >
               {item.link ? (
                 <Link to={item.link}>
@@ -122,7 +127,12 @@ function ProjectSlider({ items }) {
                     {item.mobileImage ? (
                       <source media="(max-width: 799px)" srcSet={item.mobileImage} />
                     ) : null}
-                    <img src={item.image} alt={item.title} loading="lazy" />
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      loading="lazy"
+                      {...protectedImageEventProps}
+                    />
                   </picture>
                 </Link>
               ) : (
@@ -130,7 +140,12 @@ function ProjectSlider({ items }) {
                   {item.mobileImage ? (
                     <source media="(max-width: 799px)" srcSet={item.mobileImage} />
                   ) : null}
-                  <img src={item.image} alt={item.title} loading="lazy" />
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    loading="lazy"
+                    {...protectedImageEventProps}
+                  />
                 </picture>
               )}
               {item.hoverText ? (

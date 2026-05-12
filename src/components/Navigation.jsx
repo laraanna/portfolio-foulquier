@@ -6,6 +6,7 @@ import hamburgerIcon from '../assets/icons/hamburger.svg'
 import closeIcon from '../assets/icons/close.svg'
 import plusIcon from '../assets/icons/plus.svg'
 import minusIcon from '../assets/icons/minus.svg'
+import { protectedImageEventProps } from '../utils/protectedMedia'
 import './Navigation.css'
 
 function NavItemLink({ href, className, onClick, children }) {
@@ -122,7 +123,12 @@ export default function Navigation() {
         ref={navRef}
       >
         <Link to="/" className="navigation__brand" aria-label="Home" onClick={closeMenu}>
-          <img src={monogramIcon} alt="" className="navigation__brand-icon" />
+          <img
+            src={monogramIcon}
+            alt=""
+            className="navigation__brand-icon"
+            {...protectedImageEventProps}
+          />
         </Link>
         <button
           type="button"
@@ -137,6 +143,7 @@ export default function Navigation() {
             alt=""
             className="navigation__burger-icon"
             aria-hidden
+            {...protectedImageEventProps}
           />
           <span className="navigation__sr-only">
             {menuOpen ? 'Close menu' : 'Open menu'}
@@ -185,6 +192,7 @@ export default function Navigation() {
                           alt=""
                           className="navigation__expand-icon"
                           aria-hidden
+                          {...protectedImageEventProps}
                         />
                       </button>
                     </>
