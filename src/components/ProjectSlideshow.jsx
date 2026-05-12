@@ -106,23 +106,42 @@ function ProjectSlider({ items }) {
         <div className="project-slideshow__spacer" aria-hidden="true" />
         {items.map((item, i) => (
           <div
-            key={i}
+            key={item.type ? `${item.type}-${i}` : i}
             className="project-slideshow__slide"
             style={{
               '--slide-height': item.slideHeight,
               '--slide-mobile-width': item.slideMobileWidth,
             }}
           >
-            <div
-              className={
-                item.link
-                  ? 'project-slideshow__media'
-                  : 'project-slideshow__media project-slideshow__media--no-link'
-              }
-              {...protectedMediaEventProps}
-            >
-              {item.link ? (
-                <Link to={item.link}>
+            {item.type === 'intro' || item.type === 'credits' ? (
+              <div className="project-slideshow__intro">
+                <h1 className="project-slideshow__intro-title">{item.title}</h1>
+                <p className="project-slideshow__intro-description">{item.description}</p>
+              </div>
+            ) : (
+              <div
+                className={
+                  item.link
+                    ? 'project-slideshow__media'
+                    : 'project-slideshow__media project-slideshow__media--no-link'
+                }
+                {...protectedMediaEventProps}
+              >
+                {item.link ? (
+                  <Link to={item.link}>
+                    <picture>
+                      {item.mobileImage ? (
+                        <source media="(max-width: 799px)" srcSet={item.mobileImage} />
+                      ) : null}
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        loading="lazy"
+                        {...protectedImageEventProps}
+                      />
+                    </picture>
+                  </Link>
+                ) : (
                   <picture>
                     {item.mobileImage ? (
                       <source media="(max-width: 799px)" srcSet={item.mobileImage} />
@@ -134,37 +153,25 @@ function ProjectSlider({ items }) {
                       {...protectedImageEventProps}
                     />
                   </picture>
-                </Link>
-              ) : (
-                <picture>
-                  {item.mobileImage ? (
-                    <source media="(max-width: 799px)" srcSet={item.mobileImage} />
-                  ) : null}
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    loading="lazy"
-                    {...protectedImageEventProps}
-                  />
-                </picture>
-              )}
-              {item.hoverText ? (
-                <div
-                  className={`project-slideshow__hover-text project-slideshow__hover-text--${item.hoverPosition}`}
-                  style={item.hoverColor ? { color: item.hoverColor } : undefined}
-                  aria-hidden="true"
-                >
-                  <div className="project-slideshow__hover-row">
-                    <span className="project-slideshow__hover-index">
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                    <span className="project-slideshow__hover-label">
-                      {item.hoverText}
-                    </span>
+                )}
+                {item.hoverText ? (
+                  <div
+                    className={`project-slideshow__hover-text project-slideshow__hover-text--${item.hoverPosition}`}
+                    style={item.hoverColor ? { color: item.hoverColor } : undefined}
+                    aria-hidden="true"
+                  >
+                    <div className="project-slideshow__hover-row">
+                      <span className="project-slideshow__hover-index">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <span className="project-slideshow__hover-label">
+                        {item.hoverText}
+                      </span>
+                    </div>
                   </div>
-                </div>
-              ) : null}
-            </div>
+                ) : null}
+              </div>
+            )}
           </div>
         ))}
         <div className="project-slideshow__spacer" aria-hidden="true" />
@@ -204,7 +211,7 @@ function ProjectSlideshowInner({ projectId }) {
   }
 
   const { title, images } = project
-  const items = images.map((img, i) => {
+  const imageItems = images.map((img, i) => {
     const src = typeof img === 'string' ? img : img.src
     const mobileSrc = typeof img === 'string' ? undefined : img.mobileSrc
     const text = typeof img === 'string' ? '' : img.text || ''
@@ -230,6 +237,25 @@ function ProjectSlideshowInner({ projectId }) {
       title: `${title} — ${i + 1} of ${images.length}`,
     }
   })
+  const items = projectId
+    ? [
+        {
+          type: 'intro',
+          title,
+          description: project.description || 'Description',
+          slideHeight: '60vh',
+          slideMobileWidth: '100%',
+        },
+        ...imageItems,
+        {
+          type: 'credits',
+          title: 'Credits',
+          description: project.credits || 'Credits',
+          slideHeight: '60vh',
+          slideMobileWidth: '100%',
+        },
+      ]
+    : imageItems
 
   return (
     <section className="project-slideshow" aria-label={title}>
