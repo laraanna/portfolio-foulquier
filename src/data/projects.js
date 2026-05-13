@@ -20,7 +20,15 @@ import {
 export const defaultProjectId = 'fanzine'
 
 /**
- * @typedef {{ src: string; mobileSrc?: string; text?: string; hoverPosition?: 'top' | 'bottom'; color?: string; height?: string }} ProjectImage
+ * @typedef {{
+ *   src: string;
+ *   mobileSrc?: string;
+ *   text?: string;
+ *   hoverPosition?: 'top' | 'bottom';
+ *   hoverShowIndex?: boolean;
+ *   color?: string;
+ *   height?: string;
+ * }} ProjectImage
  * @type {Record<string, { title: string; images: Array<string | ProjectImage> }>}
  */
 export const projectsById = {
@@ -83,14 +91,86 @@ export const projectsById = {
   'studio-harcourt': {
     title: 'Studio Harcourt',
     images: [
-      { src: studioHarcourtImages.studioHarcourt01.desktop, mobileSrc: studioHarcourtImages.studioHarcourt01.mobile, height: '70vh', width: '100%' },
-      { src: studioHarcourtImages.studioHarcourt02.desktop, mobileSrc: studioHarcourtImages.studioHarcourt02.mobile, height: '70vh', width: '100%' },
-      { src: studioHarcourtImages.studioHarcourt03.desktop, mobileSrc: studioHarcourtImages.studioHarcourt03.mobile, height: '70vh', width: '100%' },
-      { src: studioHarcourtImages.studioHarcourt04.desktop, mobileSrc: studioHarcourtImages.studioHarcourt04.mobile, height: '70vh', width: '100%' },
-      { src: studioHarcourtImages.studioHarcourt05.desktop, mobileSrc: studioHarcourtImages.studioHarcourt05.mobile, height: '70vh', width: '100%' },
-      { src: studioHarcourtImages.studioHarcourt06.desktop, mobileSrc: studioHarcourtImages.studioHarcourt06.mobile, height: '70vh', width: '100%' },
-      { src: studioHarcourtImages.studioHarcourt07.desktop, mobileSrc: studioHarcourtImages.studioHarcourt07.mobile, height: '70vh', width: '100%' },
-      { src: studioHarcourtImages.studioHarcourt08.desktop, mobileSrc: studioHarcourtImages.studioHarcourt08.mobile, height: '70vh', width: '100%' },
+      {
+        src: studioHarcourtImages.studioHarcourt01.desktop,
+        mobileSrc: studioHarcourtImages.studioHarcourt01.mobile,
+        text: 'Manet Andranic',
+        hoverPosition: 'top',
+        hoverShowIndex: false,
+        color: '#fff',
+        height: '70vh',
+        width: '100%',
+      },
+      {
+        src: studioHarcourtImages.studioHarcourt02.desktop,
+        mobileSrc: studioHarcourtImages.studioHarcourt02.mobile,
+        text: 'De Baecque Suzanne',
+        hoverPosition: 'top',
+        hoverShowIndex: false,
+        color: '#fff',
+        height: '70vh',
+        width: '100%',
+      },
+      {
+        src: studioHarcourtImages.studioHarcourt03.desktop,
+        mobileSrc: studioHarcourtImages.studioHarcourt03.mobile,
+        text: 'Desagnat Vincent',
+        hoverPosition: 'top',
+        hoverShowIndex: false,
+        color: '#fff',
+        height: '70vh',
+        width: '100%',
+      },
+      {
+        src: studioHarcourtImages.studioHarcourt04.desktop,
+        mobileSrc: studioHarcourtImages.studioHarcourt04.mobile,
+        text: 'Gollut Jeanne',
+        hoverPosition: 'top',
+        hoverShowIndex: false,
+        color: '#fff',
+        height: '70vh',
+        width: '100%',
+      },
+      {
+        src: studioHarcourtImages.studioHarcourt05.desktop,
+        mobileSrc: studioHarcourtImages.studioHarcourt05.mobile,
+        text: 'Milstein Rudy',
+        hoverPosition: 'top',
+        hoverShowIndex: false,
+        color: '#fff',
+        height: '70vh',
+        width: '100%',
+      },
+      {
+        src: studioHarcourtImages.studioHarcourt06.desktop,
+        mobileSrc: studioHarcourtImages.studioHarcourt06.mobile,
+        text: 'VILLIERS Salomé',
+        hoverPosition: 'top',
+        hoverShowIndex: false,
+        color: '#fff',
+        height: '70vh',
+        width: '100%',
+      },
+      {
+        src: studioHarcourtImages.studioHarcourt07.desktop,
+        mobileSrc: studioHarcourtImages.studioHarcourt07.mobile,
+        text: 'GALLAIS Xavier',
+        hoverPosition: 'top',
+        hoverShowIndex: false,
+        color: '#fff',
+        height: '70vh',
+        width: '100%',
+      },
+      {
+        src: studioHarcourtImages.studioHarcourt08.desktop,
+        mobileSrc: studioHarcourtImages.studioHarcourt08.mobile,
+        text: 'BOUCHEDE Guillaume',
+        hoverPosition: 'top',
+        hoverShowIndex: false,
+        color: '#fff',
+        height: '70vh',
+        width: '100%',
+      },
     ],
   },
   'lookbook-anthony': {

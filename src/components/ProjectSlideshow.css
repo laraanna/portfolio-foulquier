@@ -155,6 +155,15 @@
   text-align: right;
 }
 
+.project-slideshow__hover-row--label-only {
+  justify-content: flex-start;
+}
+
+.project-slideshow__hover-row--label-only .project-slideshow__hover-label {
+  flex: 0 1 auto;
+  text-align: left;
+}
+
 .project-slideshow__media:hover .project-slideshow__hover-text {
   opacity: 1;
 }

@@ -160,10 +160,18 @@ function ProjectSlider({ items }) {
                     style={item.hoverColor ? { color: item.hoverColor } : undefined}
                     aria-hidden="true"
                   >
-                    <div className="project-slideshow__hover-row">
-                      <span className="project-slideshow__hover-index">
-                        {String(i + 1).padStart(2, '0')}
-                      </span>
+                    <div
+                      className={
+                        item.hoverShowIndex === false
+                          ? 'project-slideshow__hover-row project-slideshow__hover-row--label-only'
+                          : 'project-slideshow__hover-row'
+                      }
+                    >
+                      {item.hoverShowIndex !== false ? (
+                        <span className="project-slideshow__hover-index">
+                          {String(i + 1).padStart(2, '0')}
+                        </span>
+                      ) : null}
                       <span className="project-slideshow__hover-label">
                         {item.hoverText}
                       </span>
@@ -225,6 +233,8 @@ function ProjectSlideshowInner({ projectId }) {
           ? 'bottom'
           : 'top'
     const hoverColor = typeof img === 'string' ? undefined : img.color
+    const hoverShowIndex =
+      typeof img === 'string' ? true : img.hoverShowIndex !== false
     return {
       image: src,
       mobileImage: mobileSrc,
@@ -234,6 +244,7 @@ function ProjectSlideshowInner({ projectId }) {
       link,
       hoverPosition,
       hoverColor,
+      hoverShowIndex,
       title: `${title} — ${i + 1} of ${images.length}`,
     }
   })
