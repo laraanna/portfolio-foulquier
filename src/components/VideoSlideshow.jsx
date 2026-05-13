@@ -1,5 +1,7 @@
 import { useRef, useCallback, useEffect, useState } from 'react'
 import { videoPage } from '../data/videos'
+import playerYtbIcon from '../assets/icons/PLAYER_YTB.svg'
+import flecheIcon from '../assets/icons/FLECHE.svg'
 import './ProjectSlideshow.css'
 
 function toYoutubeId(idOrUrl) {
@@ -38,13 +40,6 @@ function youtubePosterUrl(youtubeId) {
   return `https://i.ytimg.com/vi/${id}/hqdefault.jpg`
 }
 
-/** Desktop/mobile Safari (not Chrome/Firefox/Edge on iOS). Used for autoplay quirks. */
-function isLikelySafari() {
-  if (typeof navigator === 'undefined') return false
-  const ua = navigator.userAgent
-  return /safari/i.test(ua) && !/chrome|chromium|crios|fxios|edg/i.test(ua)
-}
-
 function videoEmbedPosterChildren(item) {
   return (
     <>
@@ -56,7 +51,9 @@ function videoEmbedPosterChildren(item) {
       ) : (
         <img src={item.posterUrl} alt="" loading="lazy" decoding="async" />
       )}
-      <span className="project-slideshow__embed-play" aria-hidden="true" />
+      <span className="project-slideshow__embed-play" aria-hidden="true">
+        <img src={playerYtbIcon} alt="" className="project-slideshow__embed-play-img" />
+      </span>
     </>
   )
 }
@@ -66,28 +63,32 @@ function VideoSlider({ items }) {
   const slideRefs = useRef([])
   const iframeRefs = useRef({})
   const scrollStopTimerRef = useRef(null)
-  const safariUnmuteTimerRef = useRef(null)
+  /** After wheel/trackpad scroll settles, nav stays hidden until the user moves the pointer. */
+  const chromeRevealOnPointerMoveRef = useRef(false)
+  const deferredUnmuteTimerRef = useRef(null)
+  /** Slide index whose iframe should start playing once it loads (set only from poster click). */
+  const pendingPlayAfterLoadRef = useRef(null)
+  const prevActiveEmbedIndexRef = useRef(null)
   const [suppressChrome, setSuppressChrome] = useState(false)
   const [isMobile, setIsMobile] = useState(() => window.matchMedia('(max-width: 799px)').matches)
   const [activeEmbedIndex, setActiveEmbedIndex] = useState(null)
   const [startedEmbeds, setStartedEmbeds] = useState({})
   const [audioUnlocked, setAudioUnlocked] = useState(false)
   const [pausedEmbedIndex, setPausedEmbedIndex] = useState(null)
-  /** Safari: never call playVideo until user taps (poster or overlay); avoids blocked autoplay + double-load feel. */
-  const [safariUserStarted, setSafariUserStarted] = useState({})
+  /** True only after an explicit play click on this slide while it is active (cleared when leaving the slide). */
+  const [userStartedPlayback, setUserStartedPlayback] = useState({})
+  const userStartedPlaybackRef = useRef(userStartedPlayback)
+  userStartedPlaybackRef.current = userStartedPlayback
 
-  /** Poster / explicit play: Chrome also relies on activeEmbedIndex effect; Safari never auto-loads on scroll. */
   const startEmbed = useCallback((i) => {
     setActiveEmbedIndex(i)
-    if (!isLikelySafari()) return
-    setSafariUserStarted((prev) => ({ ...prev, [i]: true }))
     const item = items[i]
     if (!item) return
     setStartedEmbeds((prev) => {
       if (prev[i]) return prev
       return {
         ...prev,
-        [i]: embedSrc(item.youtubeId, { autoplay: true, muted: true }),
+        [i]: embedSrc(item.youtubeId, { autoplay: false, muted: true }),
       }
     })
   }, [items])
@@ -106,43 +107,56 @@ function VideoSlider({ items }) {
     )
   }, [])
 
-  const clearSafariUnmuteTimer = useCallback(() => {
-    if (safariUnmuteTimerRef.current !== null) {
-      window.clearTimeout(safariUnmuteTimerRef.current)
-      safariUnmuteTimerRef.current = null
+  const clearDeferredUnmuteTimer = useCallback(() => {
+    if (deferredUnmuteTimerRef.current !== null) {
+      window.clearTimeout(deferredUnmuteTimerRef.current)
+      deferredUnmuteTimerRef.current = null
     }
   }, [])
 
-  /** Safari blocks starting playback if unMute runs in the same turn as playVideo (common once audioUnlocked is true). */
-  const scheduleSafariDeferredUnmute = useCallback(
+  const scheduleDeferredUnmute = useCallback(
     (index) => {
-      if (!isLikelySafari() || !audioUnlocked) return
-      clearSafariUnmuteTimer()
-      safariUnmuteTimerRef.current = window.setTimeout(() => {
+      if (!audioUnlocked) return
+      clearDeferredUnmuteTimer()
+      deferredUnmuteTimerRef.current = window.setTimeout(() => {
         sendPlayerCommand(index, 'unMute')
-        safariUnmuteTimerRef.current = null
+        deferredUnmuteTimerRef.current = null
       }, 480)
     },
-    [audioUnlocked, clearSafariUnmuteTimer, sendPlayerCommand],
+    [audioUnlocked, clearDeferredUnmuteTimer, sendPlayerCommand],
   )
 
   useEffect(() => () => {
     if (scrollStopTimerRef.current) {
       window.clearTimeout(scrollStopTimerRef.current)
     }
-    if (safariUnmuteTimerRef.current !== null) {
-      window.clearTimeout(safariUnmuteTimerRef.current)
+    if (deferredUnmuteTimerRef.current !== null) {
+      window.clearTimeout(deferredUnmuteTimerRef.current)
     }
   }, [])
 
+  const revealChromeAfterPointerMove = useCallback(() => {
+    if (!chromeRevealOnPointerMoveRef.current) return
+    chromeRevealOnPointerMoveRef.current = false
+    setSuppressChrome(false)
+  }, [])
+
+  useEffect(() => {
+    window.addEventListener('pointermove', revealChromeAfterPointerMove, { passive: true })
+    return () => {
+      window.removeEventListener('pointermove', revealChromeAfterPointerMove)
+    }
+  }, [revealChromeAfterPointerMove])
+
   const markScrolling = useCallback(() => {
+    chromeRevealOnPointerMoveRef.current = false
     setSuppressChrome(true)
     if (scrollStopTimerRef.current) {
       window.clearTimeout(scrollStopTimerRef.current)
     }
     scrollStopTimerRef.current = window.setTimeout(() => {
-      setSuppressChrome(false)
       scrollStopTimerRef.current = null
+      chromeRevealOnPointerMoveRef.current = true
     }, 140)
   }, [])
 
@@ -216,11 +230,30 @@ function VideoSlider({ items }) {
     return () => window.removeEventListener('resize', onResize)
   }, [items.length, updateActiveVideo])
 
+  useEffect(() => {
+    const prev = prevActiveEmbedIndexRef.current
+    if (
+      prev !== null
+      && activeEmbedIndex !== null
+      && prev !== activeEmbedIndex
+    ) {
+      setUserStartedPlayback((p) => {
+        if (!(prev in p)) return p
+        const { [prev]: _, ...rest } = p
+        return rest
+      })
+      if (pendingPlayAfterLoadRef.current === prev) {
+        pendingPlayAfterLoadRef.current = null
+      }
+    }
+    prevActiveEmbedIndexRef.current = activeEmbedIndex
+  }, [activeEmbedIndex])
+
   const firstVideoId = items[0]?.youtubeId ?? ''
 
-  /** Safari: preload first clip (no poster) so the first interaction is not poster → iframe → player. */
+  /** Preload first clip (no autoplay in URL). */
   useEffect(() => {
-    if (!isLikelySafari() || !firstVideoId) return
+    if (!firstVideoId) return
     setStartedEmbeds((prev) => {
       if (prev[0]) return prev
       return {
@@ -234,20 +267,6 @@ function VideoSlider({ items }) {
   }, [firstVideoId, isMobile])
 
   useEffect(() => {
-    if (isLikelySafari()) return
-    if (activeEmbedIndex === null) return
-    const activeItem = items[activeEmbedIndex]
-    if (!activeItem) return
-    setStartedEmbeds((prev) => {
-      if (prev[activeEmbedIndex]) return prev
-      return {
-        ...prev,
-        [activeEmbedIndex]: embedSrc(activeItem.youtubeId, { autoplay: true, muted: true }),
-      }
-    })
-  }, [activeEmbedIndex, items])
-
-  useEffect(() => {
     if (pausedEmbedIndex === null) return
     if (pausedEmbedIndex !== activeEmbedIndex) {
       setPausedEmbedIndex(null)
@@ -259,23 +278,18 @@ function VideoSlider({ items }) {
       const idx = Number(idxStr)
       if (Number.isNaN(idx)) return
       if (idx === activeEmbedIndex) {
-        if (isLikelySafari()) {
-          sendPlayerCommand(idx, 'mute')
-          if (!safariUserStarted[idx]) {
-            clearSafariUnmuteTimer()
-            sendPlayerCommand(idx, 'pauseVideo')
-            return
-          }
-          if (pausedEmbedIndex === idx) {
-            clearSafariUnmuteTimer()
-            sendPlayerCommand(idx, 'pauseVideo')
-          } else {
-            sendPlayerCommand(idx, 'playVideo')
-            scheduleSafariDeferredUnmute(idx)
-          }
+        sendPlayerCommand(idx, 'mute')
+        if (!userStartedPlayback[idx]) {
+          clearDeferredUnmuteTimer()
+          sendPlayerCommand(idx, 'pauseVideo')
+          return
+        }
+        if (pausedEmbedIndex === idx) {
+          clearDeferredUnmuteTimer()
+          sendPlayerCommand(idx, 'pauseVideo')
         } else {
-          sendPlayerCommand(idx, audioUnlocked ? 'unMute' : 'mute')
-          sendPlayerCommand(idx, pausedEmbedIndex === idx ? 'pauseVideo' : 'playVideo')
+          sendPlayerCommand(idx, 'playVideo')
+          scheduleDeferredUnmute(idx)
         }
       } else {
         sendPlayerCommand(idx, 'pauseVideo')
@@ -283,25 +297,18 @@ function VideoSlider({ items }) {
     })
   }, [
     activeEmbedIndex,
-    audioUnlocked,
-    clearSafariUnmuteTimer,
+    clearDeferredUnmuteTimer,
     pausedEmbedIndex,
-    safariUserStarted,
-    scheduleSafariDeferredUnmute,
+    scheduleDeferredUnmute,
     sendPlayerCommand,
     startedEmbeds,
+    userStartedPlayback,
   ])
 
   const handleEmbedToggle = useCallback((index) => {
     if (index !== activeEmbedIndex) return
-    setPausedEmbedIndex((prev) => {
-      const next = prev === index ? null : index
-      if (next === null && audioUnlocked && !isLikelySafari()) {
-        sendPlayerCommand(index, 'unMute')
-      }
-      return next
-    })
-  }, [activeEmbedIndex, audioUnlocked, sendPlayerCommand])
+    setPausedEmbedIndex((prev) => (prev === index ? null : index))
+  }, [activeEmbedIndex])
 
   const handleTrackScroll = useCallback(() => {
     markScrolling()
@@ -336,15 +343,14 @@ function VideoSlider({ items }) {
     el.scrollBy({ left: dir * step, behavior: 'smooth' })
   }, [])
 
-  const handleSafariFirstTapPlay = useCallback(
-    (index, e) => {
-      if (e.pointerType === 'mouse' && e.button !== 0) return
+  const handlePlayOverlayClick = useCallback(
+    (index) => {
+      setUserStartedPlayback((prev) => ({ ...prev, [index]: true }))
       sendPlayerCommand(index, 'mute')
       sendPlayerCommand(index, 'playVideo')
-      scheduleSafariDeferredUnmute(index)
-      setSafariUserStarted((prev) => ({ ...prev, [index]: true }))
+      scheduleDeferredUnmute(index)
     },
-    [scheduleSafariDeferredUnmute, sendPlayerCommand],
+    [scheduleDeferredUnmute, sendPlayerCommand],
   )
 
   return (
@@ -361,7 +367,11 @@ function VideoSlider({ items }) {
           className="project-slideshow__nav-btn project-slideshow__nav-btn--prev"
           onClick={() => scroll(-1)}
           aria-label="Scroll left"
-        />
+        >
+          <span className="project-slideshow__nav-btn-blend" aria-hidden="true">
+            <img src={flecheIcon} alt="" className="project-slideshow__nav-btn-icon" />
+          </span>
+        </button>
       )}
 
       <div
@@ -398,23 +408,28 @@ function VideoSlider({ items }) {
                       playsInline
                       onLoad={() => {
                         if (i !== activeEmbedIndex) {
+                          if (pendingPlayAfterLoadRef.current === i) {
+                            pendingPlayAfterLoadRef.current = null
+                          }
                           sendPlayerCommand(i, 'pauseVideo')
                           return
                         }
-                        if (isLikelySafari() && !safariUserStarted[i]) {
+                        const fromPosterClick = pendingPlayAfterLoadRef.current === i
+                        if (fromPosterClick) {
+                          pendingPlayAfterLoadRef.current = null
+                          setUserStartedPlayback((prev) => ({ ...prev, [i]: true }))
+                        }
+                        const started =
+                          fromPosterClick || Boolean(userStartedPlaybackRef.current[i])
+                        if (!started) {
                           sendPlayerCommand(i, 'mute')
                           sendPlayerCommand(i, 'pauseVideo')
                           return
                         }
                         const syncActive = () => {
-                          if (isLikelySafari()) {
-                            sendPlayerCommand(i, 'mute')
-                            sendPlayerCommand(i, 'playVideo')
-                            scheduleSafariDeferredUnmute(i)
-                          } else {
-                            sendPlayerCommand(i, audioUnlocked ? 'unMute' : 'mute')
-                            sendPlayerCommand(i, 'playVideo')
-                          }
+                          sendPlayerCommand(i, 'mute')
+                          sendPlayerCommand(i, 'playVideo')
+                          scheduleDeferredUnmute(i)
                         }
                         syncActive()
                         ;[120, 350, 700].forEach((ms) => {
@@ -423,15 +438,15 @@ function VideoSlider({ items }) {
                       }}
                     />
                     {i === activeEmbedIndex ? (
-                      isLikelySafari() && !safariUserStarted[i] ? (
+                      !userStartedPlayback[i] ? (
                         <button
                           type="button"
-                          className="project-slideshow__embed-poster project-slideshow__embed-poster--safari-over-embed"
-                          onPointerDown={(e) => handleSafariFirstTapPlay(i, e)}
+                          className="project-slideshow__embed-poster project-slideshow__embed-poster--over-embed"
+                          onClick={() => handlePlayOverlayClick(i)}
                           onKeyDown={(e) => {
                             if (e.key === 'Enter' || e.key === ' ') {
                               e.preventDefault()
-                              handleSafariFirstTapPlay(i, e)
+                              handlePlayOverlayClick(i)
                             }
                           }}
                           aria-label="Play video"
@@ -452,7 +467,10 @@ function VideoSlider({ items }) {
                   <button
                     type="button"
                     className="project-slideshow__embed-poster"
-                    onClick={() => startEmbed(i)}
+                    onClick={() => {
+                      pendingPlayAfterLoadRef.current = i
+                      startEmbed(i)
+                    }}
                     aria-label="Play video"
                   >
                     {videoEmbedPosterChildren(item)}
@@ -487,7 +505,11 @@ function VideoSlider({ items }) {
           className="project-slideshow__nav-btn project-slideshow__nav-btn--next"
           onClick={() => scroll(1)}
           aria-label="Scroll right"
-        />
+        >
+          <span className="project-slideshow__nav-btn-blend" aria-hidden="true">
+            <img src={flecheIcon} alt="" className="project-slideshow__nav-btn-icon" />
+          </span>
+        </button>
       )}
     </div>
   )

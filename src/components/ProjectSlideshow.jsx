@@ -5,6 +5,7 @@ import {
   protectedImageEventProps,
   protectedMediaEventProps,
 } from '../utils/protectedMedia'
+import flecheIcon from '../assets/icons/FLECHE.svg'
 import './ProjectSlideshow.css'
 
 export default function ProjectSlideshow() {
@@ -20,6 +21,8 @@ export default function ProjectSlideshow() {
 function ProjectSlider({ items }) {
   const trackRef = useRef(null)
   const scrollStopTimerRef = useRef(null)
+  /** After wheel/trackpad scroll settles, nav stays hidden until the user moves the pointer. */
+  const chromeRevealOnPointerMoveRef = useRef(false)
   const [suppressChrome, setSuppressChrome] = useState(false)
   const [isMobile, setIsMobile] = useState(() => window.matchMedia('(max-width: 799px)').matches)
 
@@ -41,14 +44,28 @@ function ProjectSlider({ items }) {
     }
   }, [])
 
+  const revealChromeAfterPointerMove = useCallback(() => {
+    if (!chromeRevealOnPointerMoveRef.current) return
+    chromeRevealOnPointerMoveRef.current = false
+    setSuppressChrome(false)
+  }, [])
+
+  useEffect(() => {
+    window.addEventListener('pointermove', revealChromeAfterPointerMove, { passive: true })
+    return () => {
+      window.removeEventListener('pointermove', revealChromeAfterPointerMove)
+    }
+  }, [revealChromeAfterPointerMove])
+
   const markScrolling = useCallback(() => {
+    chromeRevealOnPointerMoveRef.current = false
     setSuppressChrome(true)
     if (scrollStopTimerRef.current) {
       window.clearTimeout(scrollStopTimerRef.current)
     }
     scrollStopTimerRef.current = window.setTimeout(() => {
-      setSuppressChrome(false)
       scrollStopTimerRef.current = null
+      chromeRevealOnPointerMoveRef.current = true
     }, 140)
   }, [])
 
@@ -94,7 +111,11 @@ function ProjectSlider({ items }) {
           className="project-slideshow__nav-btn project-slideshow__nav-btn--prev"
           onClick={() => scroll(-1)}
           aria-label="Scroll left"
-        />
+        >
+          <span className="project-slideshow__nav-btn-blend" aria-hidden="true">
+            <img src={flecheIcon} alt="" className="project-slideshow__nav-btn-icon" />
+          </span>
+        </button>
       )}
 
       <div
@@ -191,7 +212,11 @@ function ProjectSlider({ items }) {
           className="project-slideshow__nav-btn project-slideshow__nav-btn--next"
           onClick={() => scroll(1)}
           aria-label="Scroll right"
-        />
+        >
+          <span className="project-slideshow__nav-btn-blend" aria-hidden="true">
+            <img src={flecheIcon} alt="" className="project-slideshow__nav-btn-icon" />
+          </span>
+        </button>
       )}
     </div>
   )

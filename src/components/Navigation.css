@@ -146,7 +146,7 @@
   min-width: 10rem;
   /* padding: 0.35rem 0; */
   /* background: black; */
-  border: 1px solid black;
+  border: 1px solid var(--text-h);
   /* background: var(--bg); */
   /* border: 1px solid var(--border); */
   box-shadow: var(--shadow);
@@ -190,7 +190,7 @@
 }
 
 .navigation__subitem {
-  background: #000;
+  background: var(--text-h);
   padding: 0px 15px 0px 15px;
 }
 
@@ -199,7 +199,7 @@
 }
 
 .navigation__subitem:hover .navigation__sublink {
-  color: #000;
+  color: var(--text-h);
 }
 
 
