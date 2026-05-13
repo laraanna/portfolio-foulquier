@@ -228,6 +228,11 @@
   cursor: pointer;
 }
 
+/* Safari: poster UI above preloaded iframe (default .embed-poster is z-index 1). */
+.project-slideshow__embed-poster.project-slideshow__embed-poster--safari-over-embed {
+  z-index: 2;
+}
+
 .project-slideshow__embed-poster picture {
   position: absolute;
   inset: 0;
