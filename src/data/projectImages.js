@@ -234,6 +234,39 @@ import campagneKleinod10Desktop from '../assets/projects/06_campagne_kleinod_202
 import campagneKleinod10Mobile from '../assets/projects/06_campagne_kleinod_2025/CAMPAGNE_KLEINOD_10_MOBILE.jpg'
 // #endregion
 
+// #region Lampe email — imports
+// __________________________________________________________
+// Lampe email
+// __________________________________________________________
+
+import lampeEmail01Desktop from '../assets/projects/07_lampe_email/LAMPE_EMAIL_01_DESKTOP.jpg'
+import lampeEmail01Mobile from '../assets/projects/07_lampe_email/LAMPE_EMAIL_01_MOBILE.jpg'
+
+
+import lampeEmail02Desktop from '../assets/projects/07_lampe_email/LAMPE_EMAIL_02_DESKTOP.jpg'
+import lampeEmail02Mobile from '../assets/projects/07_lampe_email/LAMPE_EMAIL_02_MOBILE.jpg'
+
+import lampeEmail03Desktop from '../assets/projects/07_lampe_email/LAMPE_EMAIL_03_DESKTOP.jpg'
+import lampeEmail03Mobile from '../assets/projects/07_lampe_email/LAMPE_EMAIL_03_MOBILE.jpg'
+
+
+import lampeEmail04Desktop from '../assets/projects/07_lampe_email/LAMPE_EMAIL_04_DESKTOP.jpg'
+import lampeEmail04Mobile from '../assets/projects/07_lampe_email/LAMPE_EMAIL_04_MOBILE.jpg'
+
+import lampeEmail05Desktop from '../assets/projects/07_lampe_email/LAMPE_EMAIL_05_DESKTOP.jpg'
+import lampeEmail05Mobile from '../assets/projects/07_lampe_email/LAMPE_EMAIL_05_MOBILE.jpg'
+
+
+import lampeEmail06Desktop from '../assets/projects/07_lampe_email/LAMPE_EMAIL_06_DESKTOP.jpg'
+import lampeEmail06Mobile from '../assets/projects/07_lampe_email/LAMPE_EMAIL_06_MOBILE.jpg'
+
+import lampeEmail07Desktop from '../assets/projects/07_lampe_email/LAMPE_EMAIL_07_DESKTOP.jpg'
+import lampeEmail07Mobile from '../assets/projects/07_lampe_email/LAMPE_EMAIL_07_MOBILE.jpg'
+
+
+import lampeEmail08Desktop from '../assets/projects/07_lampe_email/LAMPE_EMAIL_08_DESKTOP.jpg'
+import lampeEmail08Mobile from '../assets/projects/07_lampe_email/LAMPE_EMAIL_08_MOBILE.jpg'
+// #endregion
 
 // #region Ekaterina — imports
 // __________________________________________________________
@@ -639,6 +672,42 @@ export const campagneKleinodImages = {
   campagneKleinod10: {
     desktop: campagneKleinod10Desktop,
     mobile: campagneKleinod10Mobile,
+  },
+}
+
+export const lampeEmailImages = {
+
+  lampeEmail01: {
+    desktop: lampeEmail01Desktop,
+    mobile: lampeEmail01Mobile,
+  },
+  lampeEmail02: {
+    desktop: lampeEmail02Desktop,
+    mobile: lampeEmail02Mobile,
+  },
+  lampeEmail03: {
+    desktop: lampeEmail03Desktop,
+    mobile: lampeEmail03Mobile,
+  },
+  lampeEmail04: {
+    desktop: lampeEmail04Desktop,
+    mobile: lampeEmail04Mobile,
+  },
+  lampeEmail05: {
+    desktop: lampeEmail05Desktop,
+    mobile: lampeEmail05Mobile,
+  },
+  lampeEmail06: {
+    desktop: lampeEmail06Desktop,
+    mobile: lampeEmail06Mobile,
+  },
+  lampeEmail07: {
+    desktop: lampeEmail07Desktop,
+    mobile: lampeEmail07Mobile,
+  },
+  lampeEmail08: {
+    desktop: lampeEmail08Desktop,
+    mobile: lampeEmail08Mobile,
   },
 }
 

@@ -6,6 +6,7 @@ import {
   studioHarcourtImages, 
   lookbookAnthonyImages, 
   campagneKleinodImages, 
+  lampeEmailImages,
   ekaterinaImages,
   polaShinjiImages,
   gaetanImages,
@@ -122,7 +123,16 @@ export const projectsById = {
   },
   'lampe-email': {
     title: 'Lampe email',
-    images: [placeholders.default, placeholders.default, placeholders.default, placeholders.default],
+    images: [
+      { src: lampeEmailImages.lampeEmail01.desktop, mobileSrc: lampeEmailImages.lampeEmail01.mobile, height: '70vh', width: '100%' },
+      { src: lampeEmailImages.lampeEmail02.desktop, mobileSrc: lampeEmailImages.lampeEmail02.mobile, height: '70vh', width: '100%' },
+      { src: lampeEmailImages.lampeEmail03.desktop, mobileSrc: lampeEmailImages.lampeEmail03.mobile, height: '100vh', width: '100%' },
+      { src: lampeEmailImages.lampeEmail04.desktop, mobileSrc: lampeEmailImages.lampeEmail04.mobile, height: '100vh', width: '100%' },
+      { src: lampeEmailImages.lampeEmail05.desktop, mobileSrc: lampeEmailImages.lampeEmail05.mobile, height: '55vh', width: '100%' },
+      { src: lampeEmailImages.lampeEmail06.desktop, mobileSrc: lampeEmailImages.lampeEmail06.mobile, height: '70vh', width: '100%' },
+      { src: lampeEmailImages.lampeEmail07.desktop, mobileSrc: lampeEmailImages.lampeEmail07.mobile, height: '55vh', width: '100%' },
+      { src: lampeEmailImages.lampeEmail08.desktop, mobileSrc: lampeEmailImages.lampeEmail08.mobile, height: '70vh', width: '100%' },
+    ],
   },
   'ekaterina': {
     title: 'Ekaterina',
