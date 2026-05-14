@@ -281,7 +281,7 @@ export const projectsById = {
     credits: [{paragraph_1: ['EDITO AVEC LÉA']}]
   },
   'vallauris': {
-    title: 'Valauris',
+    title: 'Vallauris',
     images: [
       { src: vallaurisImages.vallauris01.desktop, mobileSrc: vallaurisImages.vallauris01.mobile, height: '70vh', width: '100%' },
       { src: vallaurisImages.vallauris02.desktop, mobileSrc: vallaurisImages.vallauris02.mobile, height: '70vh', width: '100%' },
