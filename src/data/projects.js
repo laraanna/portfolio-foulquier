@@ -81,7 +81,7 @@ export const projectsById = {
       { src: arthurImages.arthur06.desktop, mobileSrc: arthurImages.arthur06.mobile, height: '100vh', width: '100%' },
     ],
     description: 'Portrait de Comédien',
-    credits: [{paragraph_1: ['ARTHUR ÉLÈVE AUX COURS FLORENT']}]
+    credits: [{paragraph_1: ['ARTHUR'], paragraph_2: ['ÉLÈVE AUX COURS FLORENT']}]
   },
   'fleurs-grises': {
     title: 'Fleurs grises',
@@ -178,6 +178,7 @@ export const projectsById = {
       },
     ],
     description: 'Portraits',
+    credits: [{paragraph_1: ['Portraits d\'acteurs,','de comédiens', 'et de musiciens','realisé au sein du', 'studio harcourt paris']}]
   },
   'anthony': {
     title: 'Anthony',
@@ -237,8 +238,8 @@ export const projectsById = {
       { src: ekaterinaImages.ekaterina06.desktop, mobileSrc: ekaterinaImages.ekaterina06.mobile, height: '100vh', width: '100%' },
       { src: ekaterinaImages.ekaterina07.desktop, mobileSrc: ekaterinaImages.ekaterina07.mobile, height: '70vh', width: '100%' },
     ],
-    description: 'EDITORIAL DE MODE',
-    credits: [{paragraph_1: ['EDITORIAL AU CHATEAU SANTENY '], paragraph_2: ['MODÈLES','EKATERINA RUSNAK']}]
+    description: 'ÉDITORIAL DE MODE',
+    credits: [{paragraph_1: ['EDITORIAL AU CHATEAU SANTENY '], paragraph_2: ['MODÈLE','EKATERINA RUSNAK']}]
   },
   'pola-shinji': {
     title: 'Pola Shinji',
@@ -251,7 +252,7 @@ export const projectsById = {
       { src: polaShinjiImages.polaShinji06.desktop, mobileSrc: polaShinjiImages.polaShinji06.mobile, height: '70vh', width: '100%' },
       { src: polaShinjiImages.polaShinji07.desktop, mobileSrc: polaShinjiImages.polaShinji07.mobile, height: '70vh', width: '100%' },
     ],
-    description: 'PORTRAIT MANNEQUIN',
+    description: 'PORTRAIT DE MANNEQUIN',
     credits: [{paragraph_1: ['MODÈLE','SHINJI TSUKIYAMA']}]
   },
   'gaetan': {
