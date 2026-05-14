@@ -35,8 +35,7 @@
 }
 
 .project-slideshow__slider--is-scrolling .project-slideshow__track,
-.project-slideshow__slider--is-scrolling .project-slideshow__track *,
-.project-slideshow__slider--is-scrolling .project-slideshow__track *:hover {
+.project-slideshow__slider--is-scrolling .project-slideshow__track * {
   cursor: none !important;
 }
 
@@ -55,6 +54,9 @@
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
   scroll-padding-inline: 4px;
+  /* Own compositor layer: reduces scroll jank / “shaking” in Safari with large flex children */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
   /* padding-block: 0.25rem; */
   /* padding-left: 5rem; */
   /* padding-right: 5rem; */
@@ -76,11 +78,6 @@
   align-items: center;
   justify-content: center;
   position: relative;
-}
-
-/* Gallery slides: keep media flush to the slide’s top edge (Safari can mis-center when line-box height differs by a pixel). */
-.project-slideshow__slide:has(> .project-slideshow__media) {
-  align-items: flex-start;
 }
 
 .project-slideshow__media {

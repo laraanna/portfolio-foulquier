@@ -70,6 +70,7 @@ export default function ProjectSlideshow() {
 function ProjectSlider({ items }) {
   const navigate = useNavigate()
   const trackRef = useRef(null)
+  const scrollMarkRafRef = useRef(null)
   const scrollStopTimerRef = useRef(null)
   /** After wheel/trackpad scroll settles, nav stays hidden until the user moves the pointer. */
   const chromeRevealOnPointerMoveRef = useRef(false)
@@ -91,6 +92,9 @@ function ProjectSlider({ items }) {
   useEffect(() => () => {
     if (scrollStopTimerRef.current) {
       window.clearTimeout(scrollStopTimerRef.current)
+    }
+    if (scrollMarkRafRef.current != null) {
+      cancelAnimationFrame(scrollMarkRafRef.current)
     }
   }, [])
 
@@ -120,7 +124,11 @@ function ProjectSlider({ items }) {
   }, [])
 
   const handleTrackScroll = useCallback(() => {
-    markScrolling()
+    if (scrollMarkRafRef.current != null) return
+    scrollMarkRafRef.current = requestAnimationFrame(() => {
+      scrollMarkRafRef.current = null
+      markScrolling()
+    })
   }, [markScrolling])
 
   const handleTrackWheel = useCallback((e) => {
