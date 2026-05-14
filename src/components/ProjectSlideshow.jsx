@@ -8,6 +8,46 @@ import {
 import flecheIcon from '../assets/icons/FLECHE.svg'
 import './ProjectSlideshow.css'
 
+/**
+ * @param {unknown} credits
+ * @returns {{ lines: string[] }[] | null}
+ */
+function normalizeCreditsParagraphs(credits) {
+  if (credits == null || credits === '') return null
+  if (typeof credits === 'string') return [{ lines: [credits] }]
+  if (!Array.isArray(credits)) return null
+
+  /** @type {{ lines: string[] }[]} */
+  const paragraphs = []
+  for (const block of credits) {
+    if (typeof block === 'string') {
+      paragraphs.push({ lines: [block] })
+      continue
+    }
+    if (Array.isArray(block)) {
+      if (block.length && block.every((x) => typeof x === 'string')) {
+        paragraphs.push({ lines: block.map(String) })
+      }
+      continue
+    }
+    if (block && typeof block === 'object') {
+      const keys = Object.keys(block)
+        .filter((k) => /^paragraph_\d+$/i.test(k))
+        .sort((a, b) => {
+          const na = Number(String(a).replace(/^\D+/g, '')) || 0
+          const nb = Number(String(b).replace(/^\D+/g, '')) || 0
+          return na - nb
+        })
+      for (const key of keys) {
+        const val = /** @type {Record<string, unknown>} */ (block)[key]
+        const lines = Array.isArray(val) ? val.map(String) : [String(val)]
+        paragraphs.push({ lines })
+      }
+    }
+  }
+  return paragraphs.length ? paragraphs : null
+}
+
 export default function ProjectSlideshow() {
   const { projectId } = useParams()
   return (
@@ -87,13 +127,33 @@ function ProjectSlider({ items }) {
   const scroll = useCallback((dir) => {
     const el = trackRef.current
     if (!el) return
-    const slide = el.querySelector('.project-slideshow__slide')
-    const gap =
-      parseFloat(
-        getComputedStyle(el).columnGap || getComputedStyle(el).gap || '12',
-      ) || 12
-    const step = slide ? slide.getBoundingClientRect().width + gap : 320
-    el.scrollBy({ left: dir * step, behavior: 'smooth' })
+    const slides = [...el.querySelectorAll('.project-slideshow__slide')]
+    if (!slides.length) return
+
+    const trackRect = el.getBoundingClientRect()
+    const anchorX = trackRect.left + trackRect.width * 0.45
+
+    let nearest = 0
+    let best = Number.POSITIVE_INFINITY
+    slides.forEach((slide, i) => {
+      const r = slide.getBoundingClientRect()
+      const center = r.left + r.width / 2
+      const d = Math.abs(center - anchorX)
+      if (d < best) {
+        best = d
+        nearest = i
+      }
+    })
+
+    const targetIdx = nearest + dir
+    if (targetIdx < 0 || targetIdx >= slides.length) return
+
+    const a = slides[nearest]
+    const b = slides[targetIdx]
+    const stride =
+      dir > 0 ? b.offsetLeft - a.offsetLeft : a.offsetLeft - b.offsetLeft
+    if (stride <= 0) return
+    el.scrollBy({ left: dir * stride, behavior: 'smooth' })
   }, [])
 
   return (
@@ -134,10 +194,34 @@ function ProjectSlider({ items }) {
               '--slide-mobile-width': item.slideMobileWidth,
             }}
           >
-            {item.type === 'intro' || item.type === 'credits' ? (
+            {item.type === 'intro' ? (
               <div className="project-slideshow__intro">
                 <h1 className="project-slideshow__intro-title">{item.title}</h1>
                 <p className="project-slideshow__intro-description">{item.description}</p>
+              </div>
+            ) : item.type === 'credits' ? (
+              <div className="project-slideshow__intro project-slideshow__intro--credits">
+                {item.creditParagraphs?.length ? (
+                  <div className="project-slideshow__credits-body">
+                    {item.creditParagraphs.map((para, pi) => (
+                      <p
+                        key={pi}
+                        className="project-slideshow__intro-description project-slideshow__credits-paragraph"
+                      >
+                        {para.lines.map((line, li) => (
+                          <span key={li}>
+                            {li > 0 ? <br /> : null}
+                            {line}
+                          </span>
+                        ))}
+                      </p>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="project-slideshow__intro-description">
+                    {item.description ?? ''}
+                  </p>
+                )}
               </div>
             ) : (
               <div
@@ -286,7 +370,9 @@ function ProjectSlideshowInner({ projectId }) {
         {
           type: 'credits',
           title: 'Credits',
-          description: project.credits || 'Credits',
+          description:
+            typeof project.credits === 'string' ? project.credits : undefined,
+          creditParagraphs: normalizeCreditsParagraphs(project.credits),
           slideHeight: '60vh',
           slideMobileWidth: '100%',
         },

@@ -114,6 +114,20 @@
   font-weight: 400;
 }
 
+.project-slideshow__intro--credits {
+  width: min(18rem, 52vw);
+}
+
+.project-slideshow__credits-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.project-slideshow__credits-paragraph {
+  text-align: left;
+}
+
 .project-slideshow__hover-text {
   position: absolute;
   inset: 0;

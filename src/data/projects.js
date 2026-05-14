@@ -29,33 +29,33 @@ export const defaultProjectId = 'fanzine'
  *   color?: string;
  *   height?: string;
  * }} ProjectImage
- * @type {Record<string, { title: string; images: Array<string | ProjectImage> }>}
+ * @type {Record<string, { title: string; images: Array<string | ProjectImage>; description?: string; credits?: string | Array<string | Record<string, string[]>> }>}
  */
 export const projectsById = {
   fanzine: {
     title: 'Fanzine',
     images: [
-      { src: fanzineImages.shinji.desktop, mobileSrc: fanzineImages.shinji.mobile, text: 'Lookbook Shinji', hoverPosition: 'bottom', color: '#000', height: '70vh', width: '100%', link: '/lookbook-shinji' },
+      { src: fanzineImages.shinji.desktop, mobileSrc: fanzineImages.shinji.mobile, text: 'Shinji', hoverPosition: 'bottom', color: '#000', height: '70vh', width: '100%', link: '/shinji' },
       { src: fanzineImages.arthur.desktop, mobileSrc: fanzineImages.arthur.mobile, text: 'Arthur', hoverPosition: 'bottom', color: '#fff', height: '70vh', width: '80%', link: '/arthur' },
       { src: fanzineImages.fleursGrises.desktop, mobileSrc: fanzineImages.fleursGrises.mobile, text: 'Fleurs grises', hoverPosition: 'bottom', color: '#fff', height: '100vh', width: '80%', link: '/fleurs-grises' },
       { src: fanzineImages.studioHarcourt.desktop, mobileSrc: fanzineImages.studioHarcourt.mobile, text: 'Studio Harcourt', hoverPosition: 'top', color: '#fff', height: '70vh', width: '80%', link: '/studio-harcourt' },
-      { src: fanzineImages.anthony.desktop, mobileSrc: fanzineImages.anthony.mobile, text: 'Lookbook Anthony', hoverPosition: 'top', color: '#fff', height: '70vh', width: '100%', link: '/lookbook-anthony' },
-      { src: fanzineImages.campagneKleinod06.desktop, mobileSrc: fanzineImages.campagneKleinod06.mobile, text: 'Campagne Kleinod 2025', hoverPosition: 'bottom', color: '#fff', height: '100vh', width: '80%', link: '/campagne-kleinod-2025' },
-      { src: fanzineImages.email.desktop, mobileSrc: fanzineImages.email.mobile, text: 'Lampe email', hoverPosition: 'bottom', color: '#fff', height: '70vh', width: '80%', link: '/lampe-email' },
-      { src: fanzineImages.campagneKleinod08.desktop, mobileSrc: fanzineImages.campagneKleinod08.mobile, text: 'Campagne Kleinod 2025', hoverPosition: 'bottom', color: '#fff', height: '70vh', width: '80%', link: '/campagne-kleinod-2025' },
+      { src: fanzineImages.anthony.desktop, mobileSrc: fanzineImages.anthony.mobile, text: 'Anthony', hoverPosition: 'top', color: '#fff', height: '70vh', width: '100%', link: '/anthony' },
+      { src: fanzineImages.campagneKleinod06.desktop, mobileSrc: fanzineImages.campagneKleinod06.mobile, text: 'Atelier Kleinod', hoverPosition: 'bottom', color: '#fff', height: '100vh', width: '80%', link: '/atelier-kleinod' },
+      { src: fanzineImages.email.desktop, mobileSrc: fanzineImages.email.mobile, text: 'ÉMAUX SUR CUIVRE', hoverPosition: 'bottom', color: '#fff', height: '70vh', width: '80%', link: '/emaux-sur-cuivre' },
+      { src: fanzineImages.campagneKleinod08.desktop, mobileSrc: fanzineImages.campagneKleinod08.mobile, text: 'Atelier Kleinod', hoverPosition: 'bottom', color: '#fff', height: '70vh', width: '80%', link: '/atelier-kleinod' },
       { src: fanzineImages.ekaterina09.desktop, mobileSrc: fanzineImages.ekaterina09.mobile, text: 'Ekaterina', hoverPosition: 'bottom', color: '#fff', height: '70vh', width: '100%', link: '/ekaterina' },
       { src: fanzineImages.polaShinji.desktop, mobileSrc: fanzineImages.polaShinji.mobile, text: 'Pola Shinji', hoverPosition: 'bottom', color: '#fff', height: '70vh', width: '80%', link: '/pola-shinji' },
-      { src: fanzineImages.lookbookAnthony11.desktop, mobileSrc: fanzineImages.lookbookAnthony11.mobile, text: 'Lookbook Anthony', hoverPosition: 'top', color: '#fff', height: '100vh', width: '80%', link: '/lookbook-anthony' },
+      { src: fanzineImages.lookbookAnthony11.desktop, mobileSrc: fanzineImages.lookbookAnthony11.mobile, text: 'Anthony', hoverPosition: 'top', color: '#fff', height: '100vh', width: '80%', link: '/anthony' },
       { src: fanzineImages.gaetan12.desktop, mobileSrc: fanzineImages.gaetan12.mobile, text: 'Gaetan', hoverPosition: 'bottom', color: '#fff', height: '55vh', width: '80%', link: '/gaetan' },
       { src: fanzineImages.gaetan13.desktop, mobileSrc: fanzineImages.gaetan13.mobile, text: 'Gaetan', hoverPosition: 'top', color: '#fff', height: '55vh', width: '80%', link: '/gaetan' },
-      { src: fanzineImages.lea.desktop, mobileSrc: fanzineImages.lea.mobile, text: 'Lookbook Léa', hoverPosition: 'bottom', color: '#000', height: '70vh', width: '100%', link: '/lookbook-lea' },
-      { src: fanzineImages.vallauris.desktop, mobileSrc: fanzineImages.vallauris.mobile, text: 'Valauris', hoverPosition: 'top', color: '#fff', height: '55vh', width: '80%', link: '/vallauris' },
+      { src: fanzineImages.lea.desktop, mobileSrc: fanzineImages.lea.mobile, text: 'Léa', hoverPosition: 'bottom', color: '#000', height: '70vh', width: '100%', link: '/lea' },
+      { src: fanzineImages.vallauris.desktop, mobileSrc: fanzineImages.vallauris.mobile, text: 'Vallauris', hoverPosition: 'top', color: '#fff', height: '55vh', width: '80%', link: '/vallauris' },
       { src: fanzineImages.exaterina16.desktop, mobileSrc: fanzineImages.exaterina16.mobile, text: 'Exaterina', hoverPosition: 'bottom', color: '#fff', height: '70vh', width: '100%', link: '/ekaterina' },
-      { src: fanzineImages.campagneKleinod17.desktop, mobileSrc: fanzineImages.campagneKleinod17.mobile, text: 'Campagne Kleinod 2025', hoverPosition: 'bottom', color: '#fff', height: '70vh', width: '100%', link: '/campagne-kleinod-2025' },
+      { src: fanzineImages.campagneKleinod17.desktop, mobileSrc: fanzineImages.campagneKleinod17.mobile, text: 'Atelier Kleinod', hoverPosition: 'bottom', color: '#fff', height: '70vh', width: '100%', link: '/atelier-kleinod' },
     ],
   },
-  'lookbook-shinji': {
-    title: 'Lookbook Shinji',
+  'shinji': {
+    title: 'Shinji',
     images: [
       { src: lookbookShinjiImages.shinji01.desktop, mobileSrc: lookbookShinjiImages.shinji01.mobile, height: '70vh', width: '100%' },
       { src: lookbookShinjiImages.shinji02.desktop, mobileSrc: lookbookShinjiImages.shinji02.mobile, height: '70vh', width: '100%' },
@@ -67,6 +67,8 @@ export const projectsById = {
       { src: lookbookShinjiImages.shinji08.desktop, mobileSrc: lookbookShinjiImages.shinji08.mobile, height: '100vh', width: '100%' },
       { src: lookbookShinjiImages.shinji09.desktop, mobileSrc: lookbookShinjiImages.shinji09.mobile, height: '70vh', width: '100%' },
     ],
+    description: 'Étude de poses',
+    credits: [{paragraph_1: ['Edito Shinji'], paragraph_2: ['Modele','Shinji Tsukiyama']}]
   },
   'arthur': {
     title: 'Arthur',
@@ -78,6 +80,8 @@ export const projectsById = {
       { src: arthurImages.arthur05.desktop, mobileSrc: arthurImages.arthur05.mobile, height: '70vh', width: '100%' },
       { src: arthurImages.arthur06.desktop, mobileSrc: arthurImages.arthur06.mobile, height: '100vh', width: '100%' },
     ],
+    description: 'Portrait de Comédien',
+    credits: [{paragraph_1: ['ARTHUR ÉLÈVE AUX COURS FLORENT']}]
   },
   'fleurs-grises': {
     title: 'Fleurs grises',
@@ -87,6 +91,7 @@ export const projectsById = {
       { src: fleursGrisesImages.fleursGrises03.desktop, mobileSrc: fleursGrisesImages.fleursGrises03.mobile, height: '70vh', width: '100%' },
       { src: fleursGrisesImages.fleursGrises04.desktop, mobileSrc: fleursGrisesImages.fleursGrises04.mobile, height: '70vh', width: '100%' },
     ],
+    description: 'Nature morte',
   },
   'studio-harcourt': {
     title: 'Studio Harcourt',
@@ -172,9 +177,10 @@ export const projectsById = {
         width: '100%',
       },
     ],
+    description: 'Portraits',
   },
-  'lookbook-anthony': {
-    title: 'Lookbook Anthony',
+  'anthony': {
+    title: 'Anthony',
     images: [
       { src: lookbookAnthonyImages.lookbookAnthony01.desktop, mobileSrc: lookbookAnthonyImages.lookbookAnthony01.mobile, height: '70vh', width: '100%' },
       { src: lookbookAnthonyImages.lookbookAnthony02.desktop, mobileSrc: lookbookAnthonyImages.lookbookAnthony02.mobile, height: '70vh', width: '100%' },
@@ -185,9 +191,11 @@ export const projectsById = {
       { src: lookbookAnthonyImages.lookbookAnthony07.desktop, mobileSrc: lookbookAnthonyImages.lookbookAnthony07.mobile, height: '70vh', width: '100%' },
       { src: lookbookAnthonyImages.lookbookAnthony08.desktop, mobileSrc: lookbookAnthonyImages.lookbookAnthony08.mobile, height: '70vh', width: '100%' },
     ],
+    description: 'LOOKBOOK DE COMÉDIEN',
+    credits: [{paragraph_1: ['LOOKBOOK DE COMÉDIEN'], paragraph_2: ['AVEC ANTHONY CLAMARAN'], paragraph_3: ['ACTEUR ET CASCADEUR']}]
   },
-  'campagne-kleinod-2025': {
-    title: 'Campagne Kleinod 2025',
+  'atelier-kleinod': {
+    title: 'Atelier Kleinod',
     images: [
       { src: campagneKleinodImages.campagneKleinod01.desktop, mobileSrc: campagneKleinodImages.campagneKleinod01.mobile, height: '70vh', width: '100%' },
       { src: campagneKleinodImages.campagneKleinod02.desktop, mobileSrc: campagneKleinodImages.campagneKleinod02.mobile, height: '70vh', width: '100%' },
@@ -200,9 +208,11 @@ export const projectsById = {
       { src: campagneKleinodImages.campagneKleinod09.desktop, mobileSrc: campagneKleinodImages.campagneKleinod09.mobile, height: '100vh', width: '100%' },
       { src: campagneKleinodImages.campagneKleinod10.desktop, mobileSrc: campagneKleinodImages.campagneKleinod10.mobile, height: '70vh', width: '100%' },
     ],
+    description: 'JOAILLERIE CONTEMPORAINE',
+    credits: [{paragraph_1: ['CAMPAGNE EDITORIALE','POUR L’ATELIER KLEINOD'], paragraph_2: ['MODÈLES','MASSIEL MENDI','SHINJI TSUKIYAMA'], paragraph_3: ['BIJOUX','KLEINOD'], paragraph_4: ['MAKEUP','LOLA HECKENAUER']}]
   },
-  'lampe-email': {
-    title: 'Lampe email',
+  'emaux-sur-cuivre': {
+    title: 'ÉMAUX SUR CUIVRE',
     images: [
       { src: lampeEmailImages.lampeEmail01.desktop, mobileSrc: lampeEmailImages.lampeEmail01.mobile, height: '70vh', width: '100%' },
       { src: lampeEmailImages.lampeEmail02.desktop, mobileSrc: lampeEmailImages.lampeEmail02.mobile, height: '70vh', width: '100%' },
@@ -213,6 +223,8 @@ export const projectsById = {
       { src: lampeEmailImages.lampeEmail07.desktop, mobileSrc: lampeEmailImages.lampeEmail07.mobile, height: '55vh', width: '100%' },
       { src: lampeEmailImages.lampeEmail08.desktop, mobileSrc: lampeEmailImages.lampeEmail08.mobile, height: '70vh', width: '100%' },
     ],
+    description: 'DESIGN ARTISANAL',
+    credits: [{paragraph_1: ['CREATION'], paragraph_2: ['©️Anne de La Forge émailleur d\'art']}]
   },
   'ekaterina': {
     title: 'Ekaterina',
@@ -225,6 +237,8 @@ export const projectsById = {
       { src: ekaterinaImages.ekaterina06.desktop, mobileSrc: ekaterinaImages.ekaterina06.mobile, height: '100vh', width: '100%' },
       { src: ekaterinaImages.ekaterina07.desktop, mobileSrc: ekaterinaImages.ekaterina07.mobile, height: '70vh', width: '100%' },
     ],
+    description: 'EDITORIAL DE MODE',
+    credits: [{paragraph_1: ['EDITORIAL AU CHATEAU SANTENY '], paragraph_2: ['MODÈLES','EKATERINA RUSNAK']}]
   },
   'pola-shinji': {
     title: 'Pola Shinji',
@@ -237,6 +251,8 @@ export const projectsById = {
       { src: polaShinjiImages.polaShinji06.desktop, mobileSrc: polaShinjiImages.polaShinji06.mobile, height: '70vh', width: '100%' },
       { src: polaShinjiImages.polaShinji07.desktop, mobileSrc: polaShinjiImages.polaShinji07.mobile, height: '70vh', width: '100%' },
     ],
+    description: 'PORTRAIT MANNEQUIN',
+    credits: [{paragraph_1: ['MODÈLE','SHINJI TSUKIYAMA']}]
   },
   'gaetan': {
     title: 'Gaetan',
@@ -248,9 +264,11 @@ export const projectsById = {
       { src: gaetanImages.gaetan05.desktop, mobileSrc: gaetanImages.gaetan05.mobile, height: '55vh', width: '100%' },
       { src: gaetanImages.gaetan06.desktop, mobileSrc: gaetanImages.gaetan06.mobile, height: '55vh', width: '100%' },
     ],
+    description: 'PORTRAIT CORPORATE',
+    credits: [{paragraph_1: ['PORTRAITS DE GAETAN BERTAUD']}]
   },
-  'lookbook-lea': {
-    title: 'Lookbook Léa',
+  'lea': {
+    title: 'Léa',
     images: [
       { src: lookbookLeaImages.lookbookLea01.desktop, mobileSrc: lookbookLeaImages.lookbookLea01.mobile, height: '55vh', width: '100%' },
       { src: lookbookLeaImages.lookbookLea02.desktop, mobileSrc: lookbookLeaImages.lookbookLea02.mobile, height: '100vh', width: '100%' },
@@ -259,6 +277,8 @@ export const projectsById = {
       { src: lookbookLeaImages.lookbookLea05.desktop, mobileSrc: lookbookLeaImages.lookbookLea05.mobile, height: '100vh', width: '100%' },
       { src: lookbookLeaImages.lookbookLea06.desktop, mobileSrc: lookbookLeaImages.lookbookLea06.mobile, height: '70vh', width: '100%' },
     ],
+    description: 'ÉDITORIAL DE MODE',
+    credits: [{paragraph_1: ['EDITO AVEC LÉA']}]
   },
   'vallauris': {
     title: 'Valauris',
@@ -268,5 +288,7 @@ export const projectsById = {
       { src: vallaurisImages.vallauris03.desktop, mobileSrc: vallaurisImages.vallauris03.mobile, height: '70vh', width: '100%' },
       { src: vallaurisImages.vallauris04.desktop, mobileSrc: vallaurisImages.vallauris04.mobile, height: '70vh', width: '100%' },
     ],
+    description: 'NATURE MORTE',
+    credits: [{paragraph_1: ['LAMPES VALLAURIS CHINÉS PAR À L\'IMPARFAIT PARIS']}]
   }
 }

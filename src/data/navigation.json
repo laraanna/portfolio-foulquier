@@ -7,8 +7,8 @@
       "subnavigation": [
         {
           "id": "01-project-lookbook-shinji",
-          "label": "Lookbook Shinji",
-          "href": "/lookbook-shinji"
+          "label": "Shinji",
+          "href": "/shinji"
         },
         {
           "id": "02-arthur",
@@ -27,18 +27,18 @@
         },
         {
           "id": "05-lookbook-anthony",
-          "label": "Lookbook Anthony",
-          "href": "/lookbook-anthony"
+          "label": "Anthony",
+          "href": "/anthony"
         },
         {
           "id": "06-campagne-kleinod-2025",
-          "label": "Campagne Kleinod 2025",
-          "href": "/campagne-kleinod-2025"
+          "label": "Atelier Kleinod",
+          "href": "/atelier-kleinod"
         },
         {
           "id": "07-lampe-email",
-          "label": "Lampe email",
-          "href": "/lampe-email"
+          "label": "Émaux sur cuivre",
+          "href": "/emaux-sur-cuivre"
         },
         {
           "id": "08-ekaterina",
@@ -57,8 +57,8 @@
         },
         {
           "id": "11-lookbook-lea",
-          "label": "Lookbook Léa",
-          "href": "/lookbook-lea"
+          "label": "Léa",
+          "href": "/lea"
         },
         {
           "id": "12-vallauris",

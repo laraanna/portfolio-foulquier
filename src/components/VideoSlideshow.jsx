@@ -334,13 +334,33 @@ function VideoSlider({ items }) {
   const scroll = useCallback((dir) => {
     const el = trackRef.current
     if (!el) return
-    const slide = el.querySelector('.project-slideshow__slide')
-    const gap =
-      parseFloat(
-        getComputedStyle(el).columnGap || getComputedStyle(el).gap || '12',
-      ) || 12
-    const step = slide ? slide.getBoundingClientRect().width + gap : 320
-    el.scrollBy({ left: dir * step, behavior: 'smooth' })
+    const slides = [...el.querySelectorAll('.project-slideshow__slide')]
+    if (!slides.length) return
+
+    const trackRect = el.getBoundingClientRect()
+    const anchorX = trackRect.left + trackRect.width * 0.45
+
+    let nearest = 0
+    let best = Number.POSITIVE_INFINITY
+    slides.forEach((slide, i) => {
+      const r = slide.getBoundingClientRect()
+      const center = r.left + r.width / 2
+      const d = Math.abs(center - anchorX)
+      if (d < best) {
+        best = d
+        nearest = i
+      }
+    })
+
+    const targetIdx = nearest + dir
+    if (targetIdx < 0 || targetIdx >= slides.length) return
+
+    const a = slides[nearest]
+    const b = slides[targetIdx]
+    const stride =
+      dir > 0 ? b.offsetLeft - a.offsetLeft : a.offsetLeft - b.offsetLeft
+    if (stride <= 0) return
+    el.scrollBy({ left: dir * stride, behavior: 'smooth' })
   }, [])
 
   const handlePlayOverlayClick = useCallback(
