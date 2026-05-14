@@ -22,9 +22,9 @@ export default function ContactPage() {
           />
         </div>
         <p className="contact-page__text">
-          PHOTOGRAPHE ET DIRECTEUR
+          PHOTOGRAPHE ET DIRECTEUR ARTISTIQUE
           <br />
-          ARTISTIQUE BASÉ A PARIS
+          BASÉ A PARIS
         </p>
       </div>
     </section>

@@ -68,7 +68,7 @@ export const projectsById = {
       { src: lookbookShinjiImages.shinji09.desktop, mobileSrc: lookbookShinjiImages.shinji09.mobile, height: '70vh', width: '100%' },
     ],
     description: 'Étude de poses',
-    credits: [{paragraph_1: ['Edito Shinji'], paragraph_2: ['Modele','Shinji Tsukiyama']}]
+    credits: [{paragraph_1: ['Edito Shinji'], paragraph_2: ['MODÈLE','Shinji Tsukiyama']}]
   },
   'arthur': {
     title: 'Arthur',
@@ -193,7 +193,7 @@ export const projectsById = {
       { src: lookbookAnthonyImages.lookbookAnthony08.desktop, mobileSrc: lookbookAnthonyImages.lookbookAnthony08.mobile, height: '70vh', width: '100%' },
     ],
     description: 'LOOKBOOK DE COMÉDIEN',
-    credits: [{paragraph_1: ['LOOKBOOK DE COMÉDIEN'], paragraph_2: ['AVEC ANTHONY CLAMARAN'], paragraph_3: ['ACTEUR ET CASCADEUR']}]
+    credits: [{paragraph_1: ['LOOKBOOK DE COMÉDIEN','AVEC ANTHONY CLAMARAN', 'ACTEUR ET CASCADEUR']}]
   },
   'atelier-kleinod': {
     title: 'Atelier Kleinod',
@@ -210,7 +210,7 @@ export const projectsById = {
       { src: campagneKleinodImages.campagneKleinod10.desktop, mobileSrc: campagneKleinodImages.campagneKleinod10.mobile, height: '70vh', width: '100%' },
     ],
     description: 'JOAILLERIE CONTEMPORAINE',
-    credits: [{paragraph_1: ['CAMPAGNE EDITORIALE','POUR L’ATELIER KLEINOD'], paragraph_2: ['MODÈLES','MASSIEL MENDI','SHINJI TSUKIYAMA'], paragraph_3: ['BIJOUX','KLEINOD'], paragraph_4: ['MAKEUP','LOLA HECKENAUER']}]
+    credits: [{paragraph_1: ['CAMPAGNE ÉDITORIAL','POUR L’ATELIER KLEINOD'], paragraph_2: ['MODÈLES','MASSIEL MENDI','SHINJI TSUKIYAMA'], paragraph_3: ['BIJOUX','KLEINOD'], paragraph_4: ['MAKEUP','LOLA HECKENAUER']}]
   },
   'emaux-sur-cuivre': {
     title: 'ÉMAUX SUR CUIVRE',
@@ -239,7 +239,7 @@ export const projectsById = {
       { src: ekaterinaImages.ekaterina07.desktop, mobileSrc: ekaterinaImages.ekaterina07.mobile, height: '70vh', width: '100%' },
     ],
     description: 'ÉDITORIAL DE MODE',
-    credits: [{paragraph_1: ['EDITORIAL AU CHATEAU SANTENY '], paragraph_2: ['MODÈLE','EKATERINA RUSNAK']}]
+    credits: [{paragraph_1: ['ÉDITORIAL AU CHATEAU SANTENY '], paragraph_2: ['MODÈLE','EKATERINA RUSNAK']}]
   },
   'pola-shinji': {
     title: 'Pola Shinji',
