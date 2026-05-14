@@ -48,6 +48,15 @@ function normalizeCreditsParagraphs(credits) {
   return paragraphs.length ? paragraphs : null
 }
 
+/** Slide indices of the first `max` items that show a gallery image (skips intro/credits). */
+function indicesOfFirstGalleryImages(items, max = 2) {
+  const out = []
+  for (let i = 0; i < items.length && out.length < max; i++) {
+    if (items[i]?.image) out.push(i)
+  }
+  return out
+}
+
 export default function ProjectSlideshow() {
   const { projectId } = useParams()
   return (
@@ -156,6 +165,37 @@ function ProjectSlider({ items }) {
     el.scrollBy({ left: dir * stride, behavior: 'smooth' })
   }, [])
 
+  const revealGalleryImage = useCallback((el) => {
+    if (!el) return
+    el.classList.add('project-slideshow__gallery-img--loaded')
+  }, [])
+
+  const onGalleryImageLoad = useCallback(
+    (e) => {
+      revealGalleryImage(e.currentTarget)
+    },
+    [revealGalleryImage],
+  )
+
+  const onGalleryImageError = useCallback(
+    (e) => {
+      revealGalleryImage(e.currentTarget)
+    },
+    [revealGalleryImage],
+  )
+
+  const galleryImageRef = useCallback(
+    (el) => {
+      if (el?.complete && el.naturalWidth > 0) {
+        revealGalleryImage(el)
+      }
+    },
+    [revealGalleryImage],
+  )
+
+  const eagerGallerySlideIndices = indicesOfFirstGalleryImages(items, 2)
+  const firstEagerGalleryIndex = eagerGallerySlideIndices[0] ?? -1
+
   return (
     <div
       className={
@@ -185,7 +225,11 @@ function ProjectSlider({ items }) {
         onWheel={handleTrackWheel}
       >
         <div className="project-slideshow__spacer" aria-hidden="true" />
-        {items.map((item, i) => (
+        {items.map((item, i) => {
+          const isEagerGalleryImage = eagerGallerySlideIndices.includes(i)
+          const fetchPriorityHigh =
+            firstEagerGalleryIndex >= 0 && i === firstEagerGalleryIndex
+          return (
           <div
             key={item.type ? `${item.type}-${i}` : i}
             className="project-slideshow__slide"
@@ -239,9 +283,15 @@ function ProjectSlider({ items }) {
                         <source media="(max-width: 799px)" srcSet={item.mobileImage} />
                       ) : null}
                       <img
+                        ref={galleryImageRef}
+                        className="project-slideshow__gallery-img"
                         src={item.image}
                         alt={item.title}
-                        loading="lazy"
+                        loading={isEagerGalleryImage ? 'eager' : 'lazy'}
+                        fetchPriority={fetchPriorityHigh ? 'high' : undefined}
+                        decoding="async"
+                        onLoad={onGalleryImageLoad}
+                        onError={onGalleryImageError}
                         {...protectedImageEventProps}
                       />
                     </picture>
@@ -252,9 +302,15 @@ function ProjectSlider({ items }) {
                       <source media="(max-width: 799px)" srcSet={item.mobileImage} />
                     ) : null}
                     <img
+                      ref={galleryImageRef}
+                      className="project-slideshow__gallery-img"
                       src={item.image}
                       alt={item.title}
-                      loading="lazy"
+                      loading={isEagerGalleryImage ? 'eager' : 'lazy'}
+                      fetchPriority={fetchPriorityHigh ? 'high' : undefined}
+                      decoding="async"
+                      onLoad={onGalleryImageLoad}
+                      onError={onGalleryImageError}
                       {...protectedImageEventProps}
                     />
                   </picture>
@@ -286,7 +342,8 @@ function ProjectSlider({ items }) {
               </div>
             )}
           </div>
-        ))}
+          )
+        })}
         <div className="project-slideshow__spacer" aria-hidden="true" />
       </div>
 
