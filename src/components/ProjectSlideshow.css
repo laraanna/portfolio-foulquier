@@ -90,7 +90,7 @@
   flex-direction: column;
   justify-content: center;
   /* gap: 0.75rem; */
-  width: min(15rem, 40vw);
+  width: min(20rem, 40vw);
   min-height: var(--slide-height, 60vh);
   padding: 2rem;
   box-sizing: border-box;
