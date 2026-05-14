@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import { useState, useEffect, useRef, useCallback } from 'react'
+import { useNavigate } from 'react-router-dom'
 import navigation from '../data/navigation.json'
 import monogramIcon from '../assets/icons/tf-monogram.svg'
 import hamburgerIcon from '../assets/icons/hamburger.svg'
@@ -9,12 +9,84 @@ import minusIcon from '../assets/icons/minus.svg'
 import { protectedImageEventProps } from '../utils/protectedMedia'
 import './Navigation.css'
 
+function isInternalAppPath(href) {
+  return href.startsWith('/') && !href.startsWith('//')
+}
+
+/** Same-origin SPA navigation without `<a href>` so the browser status bar does not show a URL on hover. */
+function InternalNavDiv({ to, fragment, className, onActivate, children, ...rest }) {
+  const navigate = useNavigate()
+
+  const go = useCallback(() => {
+    if (fragment) {
+      navigate({ pathname: to, hash: fragment })
+    } else {
+      navigate(to)
+    }
+  }, [navigate, to, fragment])
+
+  const openUrl = fragment ? `${to}#${fragment}` : to
+
+  const handleClick = useCallback(
+    (e) => {
+      if (e.metaKey || e.ctrlKey) {
+        window.open(openUrl, '_blank', 'noopener,noreferrer')
+      } else {
+        go()
+      }
+      onActivate?.(e)
+    },
+    [go, onActivate, openUrl],
+  )
+
+  const handleAuxClick = useCallback(
+    (e) => {
+      if (e.button !== 1) return
+      e.preventDefault()
+      window.open(openUrl, '_blank', 'noopener,noreferrer')
+      onActivate?.(e)
+    },
+    [onActivate, openUrl],
+  )
+
+  const handleKeyDown = useCallback(
+    (e) => {
+      if (e.key !== 'Enter' && e.key !== ' ') return
+      e.preventDefault()
+      go()
+      onActivate?.(e)
+    },
+    [go, onActivate],
+  )
+
+  return (
+    <div
+      role="link"
+      tabIndex={0}
+      className={className}
+      onClick={handleClick}
+      onAuxClick={handleAuxClick}
+      onKeyDown={handleKeyDown}
+      {...rest}
+    >
+      {children}
+    </div>
+  )
+}
+
 function NavItemLink({ href, className, onClick, children }) {
-  if (href.startsWith('/')) {
+  if (isInternalAppPath(href)) {
     return (
-      <Link to={href} className={className} onClick={onClick}>
+      <InternalNavDiv to={href} className={className} onActivate={onClick}>
         {children}
-      </Link>
+      </InternalNavDiv>
+    )
+  }
+  if (href.startsWith('#') && href.length > 1) {
+    return (
+      <InternalNavDiv to="/" fragment={href.slice(1)} className={className} onActivate={onClick}>
+        {children}
+      </InternalNavDiv>
     )
   }
   return (
@@ -122,14 +194,19 @@ export default function Navigation() {
         aria-label="Main"
         ref={navRef}
       >
-        <Link to="/" className="navigation__brand" aria-label="Home" onClick={closeMenu}>
+        <InternalNavDiv
+          to="/"
+          className="navigation__brand"
+          aria-label="Home"
+          onActivate={closeMenu}
+        >
           <img
             src={monogramIcon}
             alt=""
             className="navigation__brand-icon"
             {...protectedImageEventProps}
           />
-        </Link>
+        </InternalNavDiv>
         <button
           type="button"
           className="navigation__burger"
