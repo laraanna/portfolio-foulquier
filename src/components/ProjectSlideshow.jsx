@@ -1,5 +1,5 @@
 import { useRef, useCallback, useEffect, useState } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import { projectsById, defaultProjectId } from '../data/projects'
 import {
   protectedImageEventProps,
@@ -68,6 +68,7 @@ export default function ProjectSlideshow() {
 }
 
 function ProjectSlider({ items }) {
+  const navigate = useNavigate()
   const trackRef = useRef(null)
   const scrollStopTimerRef = useRef(null)
   /** After wheel/trackpad scroll settles, nav stays hidden until the user moves the pointer. */
@@ -193,6 +194,53 @@ function ProjectSlider({ items }) {
     [revealGalleryImage],
   )
 
+  const galleryMediaNavigateTo = useCallback(
+    (to, { newTab } = { newTab: false }) => {
+      if (newTab) {
+        window.open(to, '_blank', 'noopener,noreferrer')
+      } else {
+        navigate(to)
+      }
+    },
+    [navigate],
+  )
+
+  const onGalleryMediaLinkClick = useCallback(
+    (e) => {
+      const to = e.currentTarget.dataset.to
+      if (!to) return
+      if (e.metaKey || e.ctrlKey) {
+        galleryMediaNavigateTo(to, { newTab: true })
+        return
+      }
+      galleryMediaNavigateTo(to, { newTab: false })
+    },
+    [galleryMediaNavigateTo],
+  )
+
+  const onGalleryMediaLinkAuxClick = useCallback(
+    (e) => {
+      if (e.button !== 1) return
+      const to = e.currentTarget.dataset.to
+      if (!to) return
+      e.preventDefault()
+      galleryMediaNavigateTo(to, { newTab: true })
+    },
+    [galleryMediaNavigateTo],
+  )
+
+  const onGalleryMediaLinkKeyDown = useCallback(
+    (e) => {
+      const to = e.currentTarget.dataset.to
+      if (!to) return
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault()
+        galleryMediaNavigateTo(to, { newTab: false })
+      }
+    },
+    [galleryMediaNavigateTo],
+  )
+
   const eagerGallerySlideIndices = indicesOfFirstGalleryImages(items, 2)
   const firstEagerGalleryIndex = eagerGallerySlideIndices[0] ?? -1
 
@@ -277,7 +325,15 @@ function ProjectSlider({ items }) {
                 {...protectedMediaEventProps}
               >
                 {item.link ? (
-                  <Link to={item.link}>
+                  <div
+                    role="link"
+                    tabIndex={0}
+                    className="project-slideshow__media-link"
+                    data-to={item.link}
+                    onClick={onGalleryMediaLinkClick}
+                    onAuxClick={onGalleryMediaLinkAuxClick}
+                    onKeyDown={onGalleryMediaLinkKeyDown}
+                  >
                     <picture>
                       {item.mobileImage ? (
                         <source media="(max-width: 799px)" srcSet={item.mobileImage} />
@@ -295,7 +351,7 @@ function ProjectSlider({ items }) {
                         {...protectedImageEventProps}
                       />
                     </picture>
-                  </Link>
+                  </div>
                 ) : (
                   <picture>
                     {item.mobileImage ? (
