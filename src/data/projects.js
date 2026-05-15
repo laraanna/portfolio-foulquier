@@ -225,7 +225,7 @@ export const projectsById = {
       { src: lampeEmailImages.lampeEmail08.desktop, mobileSrc: lampeEmailImages.lampeEmail08.mobile, height: '70vh', width: '100%' },
     ],
     description: 'DESIGN ARTISANAL',
-    credits: [{paragraph_1: ['CREATION'], paragraph_2: ['©️Anne de La Forge émailleur d\'art']}]
+    credits: [{paragraph_1: ['CRÉATION'], paragraph_2: ['©️Anne de La Forge émailleur d\'art']}]
   },
   'ekaterina': {
     title: 'Ekaterina',
@@ -290,6 +290,6 @@ export const projectsById = {
       { src: vallaurisImages.vallauris04.desktop, mobileSrc: vallaurisImages.vallauris04.mobile, height: '70vh', width: '100%' },
     ],
     description: 'NATURE MORTE',
-    credits: [{paragraph_1: ['LAMPES VALLAURIS CHINÉS PAR À L\'IMPARFAIT PARIS']}]
+    credits: [{paragraph_1: ['LAMPES VALLAURIS CHINÉES PAR À L\'IMPARFAIT PARIS']}]
   }
 }
