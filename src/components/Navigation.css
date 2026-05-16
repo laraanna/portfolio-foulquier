@@ -384,10 +384,13 @@
     pointer-events: auto;
   }
 
-  /* No desktop hover black frame on mobile; open submenu: muted black type */
-  .navigation__item--has-sub,
-  .navigation__item--has-sub:hover {
+  /* No desktop hover black frame on mobile */
+  .navigation__item,
+  .navigation__item:hover,
+  .navigation__item--has-sub:hover,
+  .navigation__item:not(.navigation__item--has-sub):hover {
     border: none;
+    background-color: transparent;
   }
 
   .navigation__subitem {
